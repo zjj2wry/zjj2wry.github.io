@@ -1,0 +1,18 @@
+BaseUrl: "http://zhengjiajin.github.io"
+LanguageCode: "en-us"
+Title: "zhengjiajin's blog"
+
+Params:
+  Author: "zhengjiajin"
+  Github: "zjj2wry"
+  ShowRelatedPost: True
+  Disqus: "unresolved"
+  SyntaxHighlightTheme: "github.min.css"
+
+Indexes:
+  tag: "tags"
+
+permalinks:
+  post: /blog/:year/:month/:day/:slug/
+
+MetadataFormat: "yaml"
