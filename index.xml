@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/</link>
+    <description>Recent content on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 17 Jan 2019 11:43:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo 使用</title>
+      <link>https://zjj2wry.github.io/first/</link>
+      <pubDate>Thu, 17 Jan 2019 11:43:30 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/first/</guid>
+      <description>&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

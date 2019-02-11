@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.53" />
+
+
+
+<link rel="canonical" href="https://zjj2wry.github.io/first/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>hugo 使用 - zhengjiajin&#39;s blog</title>
+    
+<meta name="description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+
+<meta property="og:title" content="hugo 使用 - zhengjiajin&#39;s blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zjj2wry.github.io/first/">
+<meta property="og:image" content="https://zjj2wry.github.io/images/default.png">
+<meta property="og:site_name" content="zhengjiajin&#39;s blog">
+<meta property="og:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="zhengjiajin&#39;s blog">
+<meta name="twitter:url" content="https://zjj2wry.github.io/first/">
+<meta name="twitter:title" content="hugo 使用 - zhengjiajin&#39;s blog">
+<meta name="twitter:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta name="twitter:image" content="https://zjj2wry.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://zjj2wry.github.io/"
+    },
+    "headline": "hugo 使用 - zhengjiajin&#39;s blog",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://zjj2wry.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2019-01-17T11:43:30JST",
+    "dateModified": "2019-01-17T11:43:30JST",
+    "author": {
+      "@type": "Person",
+      "name": "zhengjiajin&#39;s blog"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "zhengjiajin&#39;s blog",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://zjj2wry.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "<h2 id="安装">安装</h2>
+
+<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>"
+  }
+</script>
+
+
+    <link href="https://zjj2wry.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://zjj2wry.github.io/">zhengjiajin&#39;s blog</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://zjj2wry.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li class="active">hugo 使用</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-01-17T11:43:30JST">Jan 17, 2019</time></li>
+      
+      
+    </ul>
+
+    <h1 class="title">hugo 使用</h1>
+  </header>
+
+  
+
+  <div class="article-body"><h2 id="安装">安装</h2>
+
+<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>
+
+<p>然后把原始的内容和渲染后的 html 一起提交到远端的 xxx.github.io 上来管理。生成文章后会有一个配置信息，使用 yaml 格式管理配置信息，下面是我的配置信息。</p>
+
+<pre><code class="language-yaml">BaseUrl: &quot;https://zjj2wry.github.io/&quot;
+Title: &quot;zhengjiajin's blog&quot;
+theme: &quot;beg&quot; # hugo 的主题，选择它的原因是比较简洁，但是提供了 categories 和 tags 的功能
+disqusShortname: zhengjiajin # 评论系统，需要去 disqus 创建一个账号，不过需要翻墙
+
+Params:
+  Author: &quot;zhengjiajin&quot;
+  Github: &quot;zjj2wry&quot;
+  ShowRelatedPost: True
+  # Disqus: &quot;unresolved&quot;
+
+MetadataFormat: &quot;yaml&quot;
+</code></pre>
+
+<h2 id="写博客">写博客</h2>
+
+<p>在博客的头部添加文章的 metadata 信息，然后内容使用 markdown 格式写就完事了。</p>
+
+<pre><code class="language-yaml">---
+title: &quot;hugo 使用&quot;
+date: 2019-01-17T11:43:30+08:00
+tags: [ &quot;hugo&quot; ]
+categories: [ &quot;others&quot; ]
+comments: true # 是否开启评论
+---
+</code></pre>
+
+<p>另外 hugo 默认会自动截取文章前面的一段内容作为摘要信息，可以使用 <code>&lt;!--more--&gt;</code> 手动指定摘要的内容</p>
+
+<p><img src="../images/hugo-summary.png" alt="hugo summary" /></p>
+
+<h2 id="发布">发布</h2>
+
+<p>写完了之后需要把写完的 blog 渲染成 html 文件，执行 <code>hugo -d .</code>， -d 选择输出目录的位置，把它输出到当前 repo 的 root 的目录，然后 push
+到 github repo 即可。</p>
+
+<pre><code>hugo -d .
+</code></pre>
+
+<p>本地预览执行命令</p>
+
+<pre><code>hugo server
+</code></pre></div>
+
+  <footer class="article-footer">
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">CATEGORIES</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://zjj2wry.github.io/categories/others/">others</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://zjj2wry.github.io/tags/hugo/">hugo</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "zhengjiajin" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://zjj2wry.github.io/first/" class="list-group-item">hugo 使用</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://zjj2wry.github.io/categories/others" class="list-group-item">others</a>
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://zjj2wry.github.io/tags/hugo" class="list-group-item">hugo</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; zhengjiajin&#39;s blog</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
