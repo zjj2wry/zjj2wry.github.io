@@ -1,18 +1,13 @@
-BaseUrl: "http://zhengjiajin.github.io"
-LanguageCode: "en-us"
+BaseUrl: "https://zjj2wry.github.io/"
 Title: "zhengjiajin's blog"
+theme: "beg"
+disqusShortname: zhengjiajin
+googleAnalytics: "UA-132664378-2"
 
 Params:
   Author: "zhengjiajin"
   Github: "zjj2wry"
   ShowRelatedPost: True
-  Disqus: "unresolved"
-  SyntaxHighlightTheme: "github.min.css"
-
-Indexes:
-  tag: "tags"
-
-permalinks:
-  post: /blog/:year/:month/:day/:slug/
+  # Disqus: "unresolved"
 
 MetadataFormat: "yaml"
