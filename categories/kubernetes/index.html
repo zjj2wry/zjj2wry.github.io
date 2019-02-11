@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="generator" content="Hugo 0.53" />
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="https://zjj2wry.github.io/categories/others/index.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="https://zjj2wry.github.io/categories/kubernetes/index.xml">
 
-<link rel="canonical" href="https://zjj2wry.github.io/categories/others/">
+<link rel="canonical" href="https://zjj2wry.github.io/categories/kubernetes/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Others - zhengjiajin&#39;s blog</title>
+    <title>Kubernetes - zhengjiajin&#39;s blog</title>
     
     <link href="https://zjj2wry.github.io/css/styles.css" rel="stylesheet">
     
@@ -53,7 +53,7 @@
 
     
     <header class="page-header">
-      <h1>Others</h1>
+      <h1>Kubernetes</h1>
     </header>
     
 
@@ -62,21 +62,21 @@
       <li><article class="li">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-01-17T11:43:30JST">Jan 17, 2019</time></li>
-      
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-02-11T14:33:25JST">Feb 11, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://zjj2wry.github.io/tensorflow/">tensorflow</a></li>
       
     </ul>
-    <h2 class="title"><a href="https://zjj2wry.github.io/first/">hugo 使用</a></h2>
+    <h2 class="title"><a href="https://zjj2wry.github.io/tensorflow/dist/">使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</a></h2>
   </header>
 
   
-  <div class="summary"><h2 id="安装">安装</h2>
+  <div class="summary"><h3 id="worker-执行完任务后没有正常退出-seession-close-失败">worker 执行完任务后没有正常退出(seession close 失败)</h3>
 
-<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p></div>
+<p>tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。</p></div>
 
   
   <footer>
-    <a href="https://zjj2wry.github.io/first/" title="hugo 使用">Read More…</a>
+    <a href="https://zjj2wry.github.io/tensorflow/dist/" title="使用 kubernetes 运行 tensorflow 分布式训练时的常见问题">Read More…</a>
   </footer>
   
 </article>

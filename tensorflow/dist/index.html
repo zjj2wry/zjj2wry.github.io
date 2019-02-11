@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://zjj2wry.github.io/first/">
+<link rel="canonical" href="https://zjj2wry.github.io/tensorflow/dist/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>hugo 使用 - zhengjiajin&#39;s blog</title>
+    <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题 - zhengjiajin&#39;s blog</title>
     
-<meta name="description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta name="description" content="&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;&lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;">
 
-<meta property="og:title" content="hugo 使用 - zhengjiajin&#39;s blog">
+<meta property="og:title" content="使用 kubernetes 运行 tensorflow 分布式训练时的常见问题 - zhengjiajin&#39;s blog">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://zjj2wry.github.io/first/">
+<meta property="og:url" content="https://zjj2wry.github.io/tensorflow/dist/">
 <meta property="og:image" content="https://zjj2wry.github.io/images/default.png">
 <meta property="og:site_name" content="zhengjiajin&#39;s blog">
-<meta property="og:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta property="og:description" content="&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;&lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="zhengjiajin&#39;s blog">
-<meta name="twitter:url" content="https://zjj2wry.github.io/first/">
-<meta name="twitter:title" content="hugo 使用 - zhengjiajin&#39;s blog">
-<meta name="twitter:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta name="twitter:url" content="https://zjj2wry.github.io/tensorflow/dist/">
+<meta name="twitter:title" content="使用 kubernetes 运行 tensorflow 分布式训练时的常见问题 - zhengjiajin&#39;s blog">
+<meta name="twitter:description" content="&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;&lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;">
 <meta name="twitter:image" content="https://zjj2wry.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://zjj2wry.github.io/"
     },
-    "headline": "hugo 使用 - zhengjiajin&#39;s blog",
+    "headline": "使用 kubernetes 运行 tensorflow 分布式训练时的常见问题 - zhengjiajin&#39;s blog",
     "image": {
       "@type": "ImageObject",
       "url": "https://zjj2wry.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2019-01-17T11:43:30JST",
-    "dateModified": "2019-01-17T11:43:30JST",
+    "datePublished": "2019-02-11T14:33:25JST",
+    "dateModified": "2019-02-11T14:33:25JST",
     "author": {
       "@type": "Person",
       "name": "zhengjiajin&#39;s blog"
@@ -65,9 +65,9 @@
         "height": 60
       }
     },
-    "description": "<h2 id="安装">安装</h2>
+    "description": "<h3 id="worker-执行完任务后没有正常退出-seession-close-失败">worker 执行完任务后没有正常退出(seession close 失败)</h3>
 
-<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>"
+<p>tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。</p>"
   }
 </script>
 
@@ -111,72 +111,54 @@
       <ol class="breadcrumb">
         <li><a href="https://zjj2wry.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li class="active">hugo 使用</li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://zjj2wry.github.io/tensorflow/" itemprop="url"><span itemprop="title">tensorflow</span></a></li>
+        
+        <li class="active">使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-01-17T11:43:30JST">Jan 17, 2019</time></li>
-      
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-02-11T14:33:25JST">Feb 11, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://zjj2wry.github.io/tensorflow/">tensorflow</a></li>
       
     </ul>
 
-    <h1 class="title">hugo 使用</h1>
+    <h1 class="title">使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</h1>
   </header>
 
   
 
-  <div class="article-body"><h2 id="安装">安装</h2>
+  <div class="article-body"><h3 id="worker-执行完任务后没有正常退出-seession-close-失败">worker 执行完任务后没有正常退出(seession close 失败)</h3>
 
-<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>
+<p>tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。</p>
 
-<p>然后把原始的内容和渲染后的 html 一起提交到远端的 xxx.github.io 上来管理。生成文章后会有一个配置信息，使用 yaml 格式管理配置信息，下面是我的配置信息。</p>
+<p>详情见 <a href="https://github.com/tensorflow/tensorflow/issues/21745">issue</a></p>
 
-<pre><code class="language-yaml">BaseUrl: &quot;https://zjj2wry.github.io/&quot;
-Title: &quot;zhengjiajin's blog&quot;
-theme: &quot;beg&quot; # hugo 的主题，选择它的原因是比较简洁，但是提供了 categories 和 tags 的功能
-disqusShortname: zhengjiajin # 评论系统，需要去 disqus 创建一个账号，不过需要翻墙
+<h4 id="解决方法">解决方法</h4>
 
-Params:
-  Author: &quot;zhengjiajin&quot;
-  Github: &quot;zjj2wry&quot;
-  ShowRelatedPost: True
-  # Disqus: &quot;unresolved&quot;
+<p>分布式训练的时候只需要 worker 和 ps 通信，详情见 <a href="https://github.com/linkedin/TonY/pull/120/files">issue</a></p>
 
-MetadataFormat: &quot;yaml&quot;
+<pre><code class="language-python">config_proto = tf.ConfigProto(device_filters = ['/job:ps', '/job:worker/task:%d' % task_index])
+...
+with tf.train.MonitoredTrainingSession(master=server.target,
+                                       is_chief=(task_index == 0),
+                                       checkpoint_dir=FLAGS.working_dir,
+                                       hooks=hooks,
+                                       config=config_proto) as sess:
 </code></pre>
 
-<h2 id="写博客">写博客</h2>
+<h3 id="训练的时候没有输出日志">训练的时候没有输出日志</h3>
 
-<p>在博客的头部添加文章的 metadata 信息，然后内容使用 markdown 格式写就完事了。</p>
+<p>python 的 stdout 是带缓冲的，在跑 k8s 分布式训练的时候经常出现本地运行的时候有日志，但是使用容器运行的时候没有日志。</p>
 
-<pre><code class="language-yaml">---
-title: &quot;hugo 使用&quot;
-date: 2019-01-17T11:43:30+08:00
-tags: [ &quot;hugo&quot; ]
-categories: [ &quot;others&quot; ]
-comments: true # 是否开启评论
----
-</code></pre>
+<h4 id="解决方法-1">解决方法</h4>
 
-<p>另外 hugo 默认会自动截取文章前面的一段内容作为摘要信息，可以使用 <code>&lt;!--more--&gt;</code> 手动指定摘要的内容</p>
-
-<p><img src="../images/hugo-summary.png" alt="hugo summary" /></p>
-
-<h2 id="发布">发布</h2>
-
-<p>写完了之后需要把写完的 blog 渲染成 html 文件，执行 <code>hugo -d .</code>， -d 选择输出目录的位置，把它输出到当前 repo 的 root 的目录，然后 push
-到 github repo 即可。</p>
-
-<pre><code>hugo -d .
-</code></pre>
-
-<p>本地预览执行命令</p>
-
-<pre><code>hugo server
-</code></pre></div>
+<ol>
+<li>执行 python 程序的时候加一个 -u, 比如 <code>python -u main.py</code></li>
+<li>通过传递环境变量 <code>PYTHONUNBUFFERED=1</code></li>
+</ol></div>
 
   <footer class="article-footer">
     
@@ -189,7 +171,9 @@ comments: true # 是否开启评论
       <div>
         <ul class="p-terms">
           
-          <li><a href="https://zjj2wry.github.io/categories/others/">others</a></li>
+          <li><a href="https://zjj2wry.github.io/categories/tensorflows/">tensorflows</a></li>
+          
+          <li><a href="https://zjj2wry.github.io/categories/kubernetes/">kubernetes</a></li>
           
         </ul>
       </div>
@@ -204,7 +188,11 @@ comments: true # 是否开启评论
       <div>
         <ul class="p-terms">
           
-          <li><a href="https://zjj2wry.github.io/tags/hugo/">hugo</a></li>
+          <li><a href="https://zjj2wry.github.io/tags/tensorflows/">tensorflows</a></li>
+          
+          <li><a href="https://zjj2wry.github.io/tags/tips/">tips</a></li>
+          
+          <li><a href="https://zjj2wry.github.io/tags/distributed/">distributed</a></li>
           
         </ul>
       </div>

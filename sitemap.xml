@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zjj2wry.github.io/tensorflow/dist/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zjj2wry.github.io/first/</loc>
     <lastmod>2019-01-17T11:43:30+08:00</lastmod>
   </url>
@@ -13,8 +18,20 @@
   </url>
   
   <url>
+    <loc>https://zjj2wry.github.io/tags/distributed/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zjj2wry.github.io/tags/hugo/</loc>
     <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -26,13 +43,37 @@
   
   <url>
     <loc>https://zjj2wry.github.io/tags/</loc>
-    <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tensorflow/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/tensorflows/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/tensorflows/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/tips/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zjj2wry.github.io/</loc>
-    <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   

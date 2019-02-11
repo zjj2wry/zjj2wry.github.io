@@ -10,11 +10,29 @@
     
     
     <item>
+      <title>Kubernetes</title>
+      <link>https://zjj2wry.github.io/categories/kubernetes/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Others</title>
       <link>https://zjj2wry.github.io/categories/others/</link>
       <pubDate>Thu, 17 Jan 2019 11:43:30 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/categories/others/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tensorflows</title>
+      <link>https://zjj2wry.github.io/categories/tensorflows/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/tensorflows/</guid>
       <description></description>
     </item>
     

@@ -5,10 +5,19 @@
     <link>https://zjj2wry.github.io/tags/</link>
     <description>Recent content in Tags on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Jan 2019 11:43:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Feb 2019 14:33:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Distributed</title>
+      <link>https://zjj2wry.github.io/tags/distributed/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tags/distributed/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hugo</title>
@@ -16,6 +25,24 @@
       <pubDate>Thu, 17 Jan 2019 11:43:30 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tensorflows</title>
+      <link>https://zjj2wry.github.io/tags/tensorflows/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tags/tensorflows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://zjj2wry.github.io/tags/tips/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tags/tips/</guid>
       <description></description>
     </item>
     
