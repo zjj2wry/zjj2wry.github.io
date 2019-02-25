@@ -5,10 +5,19 @@
     <link>https://zjj2wry.github.io/tensorflow/</link>
     <description>Recent content in Tensorflows on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 11 Feb 2019 14:33:25 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Feb 2019 16:34:28 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tensorflow/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>setup tensorflow development environment</title>
+      <link>https://zjj2wry.github.io/tensorflow/setup/</link>
+      <pubDate>Mon, 25 Feb 2019 16:34:28 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tensorflow/setup/</guid>
+      <description>&lt;p&gt;git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</title>
