@@ -15,10 +15,10 @@ cnn 和传统神经网络一样，也是自动提取特征，因为使用了局�
 
 cnn 使用 filter 或者 kernel 卷积图像，比如一只猫出现在不同的位置上， 依然可以捕获到相同的特征。另外 cnn 使用了共享权值和偏重，相比于传统的神经网络大大减少了权重和参数的个数。
 
-![Convolution_schematic](./images/Convolution_schematic.gif)
+![Convolution_schematic](../../images/Convolution_schematic.gif)
 
 ## pooling 层的作用
 
 pooling 层会压缩矩阵，最大的作用是防止过拟合，提高模型泛化能力，图片平移动和旋转后具有不变性
 
-![Pooling_schematic](./images/Pooling_schematic.gif)
+![Pooling_schematic](../../images/Pooling_schematic.gif)
