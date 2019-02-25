@@ -5,23 +5,10 @@
     <link>https://zjj2wry.github.io/tensorflow/</link>
     <description>Recent content in Tensorflows on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 12 Feb 2019 10:17:16 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Feb 2019 14:33:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tensorflow/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>cnn 基本原理</title>
-      <link>https://zjj2wry.github.io/tensorflow/cnn/</link>
-      <pubDate>Tue, 12 Feb 2019 10:17:16 +0800</pubDate>
-      
-      <guid>https://zjj2wry.github.io/tensorflow/cnn/</guid>
-      <description>&lt;h2 id=&#34;为什么要使用-cnn&#34;&gt;为什么要使用 cnn？&lt;/h2&gt;
-
-&lt;h3 id=&#34;特征提取&#34;&gt;特征提取&lt;/h3&gt;
-
-&lt;p&gt;cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</title>

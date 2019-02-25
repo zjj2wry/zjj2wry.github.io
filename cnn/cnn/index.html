@@ -8,29 +8,29 @@
 
 
 
-<link rel="canonical" href="https://zjj2wry.github.io/first/">
+<link rel="canonical" href="https://zjj2wry.github.io/cnn/cnn/">
 
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>hugo 使用 - zhengjiajin&#39;s blog</title>
+    <title>cnn 基本原理 - zhengjiajin&#39;s blog</title>
     
-<meta name="description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta name="description" content="&lt;h2 id=&#34;为什么要使用-cnn&#34;&gt;为什么要使用 cnn？&lt;/h2&gt;&lt;h3 id=&#34;特征提取&#34;&gt;特征提取&lt;/h3&gt;&lt;p&gt;cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。&lt;/p&gt;">
 
-<meta property="og:title" content="hugo 使用 - zhengjiajin&#39;s blog">
+<meta property="og:title" content="cnn 基本原理 - zhengjiajin&#39;s blog">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://zjj2wry.github.io/first/">
+<meta property="og:url" content="https://zjj2wry.github.io/cnn/cnn/">
 <meta property="og:image" content="https://zjj2wry.github.io/images/default.png">
 <meta property="og:site_name" content="zhengjiajin&#39;s blog">
-<meta property="og:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta property="og:description" content="&lt;h2 id=&#34;为什么要使用-cnn&#34;&gt;为什么要使用 cnn？&lt;/h2&gt;&lt;h3 id=&#34;特征提取&#34;&gt;特征提取&lt;/h3&gt;&lt;p&gt;cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。&lt;/p&gt;">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="zhengjiajin&#39;s blog">
-<meta name="twitter:url" content="https://zjj2wry.github.io/first/">
-<meta name="twitter:title" content="hugo 使用 - zhengjiajin&#39;s blog">
-<meta name="twitter:description" content="&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;">
+<meta name="twitter:url" content="https://zjj2wry.github.io/cnn/cnn/">
+<meta name="twitter:title" content="cnn 基本原理 - zhengjiajin&#39;s blog">
+<meta name="twitter:description" content="&lt;h2 id=&#34;为什么要使用-cnn&#34;&gt;为什么要使用 cnn？&lt;/h2&gt;&lt;h3 id=&#34;特征提取&#34;&gt;特征提取&lt;/h3&gt;&lt;p&gt;cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。&lt;/p&gt;">
 <meta name="twitter:image" content="https://zjj2wry.github.io/images/default.png">
 
 
@@ -42,15 +42,15 @@
       "@type": "WebPage",
       "@id":"https://zjj2wry.github.io/"
     },
-    "headline": "hugo 使用 - zhengjiajin&#39;s blog",
+    "headline": "cnn 基本原理 - zhengjiajin&#39;s blog",
     "image": {
       "@type": "ImageObject",
       "url": "https://zjj2wry.github.io/images/default.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2019-01-17T11:43:30JST",
-    "dateModified": "2019-01-17T11:43:30JST",
+    "datePublished": "2019-02-12T10:17:16JST",
+    "dateModified": "2019-02-12T10:17:16JST",
     "author": {
       "@type": "Person",
       "name": "zhengjiajin&#39;s blog"
@@ -65,9 +65,11 @@
         "height": 60
       }
     },
-    "description": "<h2 id="安装">安装</h2>
+    "description": "<h2 id="为什么要使用-cnn">为什么要使用 cnn？</h2>
 
-<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>"
+<h3 id="特征提取">特征提取</h3>
+
+<p>cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。</p>"
   }
 </script>
 
@@ -111,72 +113,44 @@
       <ol class="breadcrumb">
         <li><a href="https://zjj2wry.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
         
-        <li class="active">hugo 使用</li>
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://zjj2wry.github.io/cnn/" itemprop="url"><span itemprop="title">cnn</span></a></li>
+        
+        <li class="active">cnn 基本原理</li>
       </ol>
     </nav>
 
     <article class="single">
   <header>
     <ul class="p-facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-01-17T11:43:30JST">Jan 17, 2019</time></li>
-      
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2019-02-12T10:17:16JST">Feb 12, 2019</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://zjj2wry.github.io/cnn/">cnn</a></li>
       
     </ul>
 
-    <h1 class="title">hugo 使用</h1>
+    <h1 class="title">cnn 基本原理</h1>
   </header>
 
   
 
-  <div class="article-body"><h2 id="安装">安装</h2>
+  <div class="article-body"><h2 id="为什么要使用-cnn">为什么要使用 cnn？</h2>
 
-<p>安装 hugo 见中文文档(<a href="http://www.gohugo.org/">http://www.gohugo.org/</a>), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。</p>
+<h3 id="特征提取">特征提取</h3>
 
-<p>然后把原始的内容和渲染后的 html 一起提交到远端的 xxx.github.io 上来管理。生成文章后会有一个配置信息，使用 yaml 格式管理配置信息，下面是我的配置信息。</p>
+<p>cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。</p>
 
-<pre><code class="language-yaml">BaseUrl: &quot;https://zjj2wry.github.io/&quot;
-Title: &quot;zhengjiajin's blog&quot;
-theme: &quot;beg&quot; # hugo 的主题，选择它的原因是比较简洁，但是提供了 categories 和 tags 的功能
-disqusShortname: zhengjiajin # 评论系统，需要去 disqus 创建一个账号，不过需要翻墙
+<p>特征数目过少，我们可能无法精确的分类出来，即我们所说的欠拟合，如果特征数目过多，可能会导致我们在分类过程中过于注重某个特征导致分类错误，即过拟合。卷积层有相当大的先天的对于过度拟合的抵抗。原因是共享权重意味着卷积滤波器被强制从整个图像中学习。这使他们不太可能去选择在训练数据中的局部特质。</p>
 
-Params:
-  Author: &quot;zhengjiajin&quot;
-  Github: &quot;zjj2wry&quot;
-  ShowRelatedPost: True
-  # Disqus: &quot;unresolved&quot;
+<h3 id="平移不变性">平移不变性</h3>
 
-MetadataFormat: &quot;yaml&quot;
-</code></pre>
+<p>cnn 使用 filter 或者 kernel 卷积图像，比如一只猫出现在不同的位置上， 依然可以捕获到相同的特征。另外 cnn 使用了共享权值和偏重，相比于传统的神经网络大大减少了权重和参数的个数。</p>
 
-<h2 id="写博客">写博客</h2>
+<p><img src="../images/Convolution_schematic.gif" alt="Convolution_schematic" /></p>
 
-<p>在博客的头部添加文章的 metadata 信息，然后内容使用 markdown 格式写就完事了。</p>
+<h2 id="pooling-层的作用">pooling 层的作用</h2>
 
-<pre><code class="language-yaml">---
-title: &quot;hugo 使用&quot;
-date: 2019-01-17T11:43:30+08:00
-tags: [ &quot;hugo&quot; ]
-categories: [ &quot;others&quot; ]
-comments: true # 是否开启评论
----
-</code></pre>
+<p>pooling 层会压缩矩阵，最大的作用是防止过拟合，提高模型泛化能力，图片平移动和旋转后具有不变性</p>
 
-<p>另外 hugo 默认会自动截取文章前面的一段内容作为摘要信息，可以使用 <code>&lt;!--more--&gt;</code> 手动指定摘要的内容</p>
-
-<p><img src="../images/hugo-summary.png" alt="hugo summary" /></p>
-
-<h2 id="发布">发布</h2>
-
-<p>写完了之后需要把写完的 blog 渲染成 html 文件，执行 <code>hugo -d .</code>， -d 选择输出目录的位置，把它输出到当前 repo 的 root 的目录，然后 push
-到 github repo 即可。</p>
-
-<pre><code>hugo -d .
-</code></pre>
-
-<p>本地预览执行命令</p>
-
-<pre><code>hugo server
-</code></pre></div>
+<p><img src="../images/Pooling_schematic.gif" alt="Pooling_schematic" /></p></div>
 
   <footer class="article-footer">
     
@@ -189,7 +163,7 @@ comments: true # 是否开启评论
       <div>
         <ul class="p-terms">
           
-          <li><a href="https://zjj2wry.github.io/categories/others/">others</a></li>
+          <li><a href="https://zjj2wry.github.io/categories/cnn/">cnn</a></li>
           
         </ul>
       </div>
@@ -204,7 +178,7 @@ comments: true # 是否开启评论
       <div>
         <ul class="p-terms">
           
-          <li><a href="https://zjj2wry.github.io/tags/hugo/">hugo</a></li>
+          <li><a href="https://zjj2wry.github.io/tags/cnn/">cnn</a></li>
           
         </ul>
       </div>
