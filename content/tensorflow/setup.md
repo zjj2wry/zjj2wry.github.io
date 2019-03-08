@@ -1,11 +1,11 @@
 ---
-title: "setup tensorflow development environment"
+title: "为 tensorflow 贡献代码"
 date: 2019-02-25T16:34:28+08:00
 tags: [ "tensorflows" ]
 categories: [ "tensorflows" ]
 ---
 
-git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。<!--more--> 在 pip 里面不方便看 tensorflow 源码，因为跳入到代码里面不知道这个文件在真实 repo 中的哪里目录中，同时修改没有办法看到效果。理想的方式是进入代码的时候能看到跳到 clone 后的源码库。另外可以方便不断的追踪 master 分支的代码。
+tensorflow 官方没有教程教你如何去搭建 contributor 环境，相比于 kubernetes 这方面做的很差，而且很多 issue 都是提问式，而 kubernetes 有很多的开发人员主动的去 pick issue 去修复。这篇 blog 讲如何搭建一个开发者环境(想要深入了解代码，后续自己写一个 mini 版本的 tensorflow)，git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。<!--more--> 在 pip 里面不方便看 tensorflow 源码，因为跳入到代码里面不知道这个文件在真实 repo 中的哪里目录中，同时修改没有办法看到效果。理想的方式是进入代码的时候能看到跳到 clone 后的源码库。另外可以方便不断的追踪 master 分支的代码。
 
 > mac 需要安装 xcode
 
