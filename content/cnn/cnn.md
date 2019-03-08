@@ -1,5 +1,5 @@
 ---
-title: "cnn 基本原理"
+title: "cnn 基本原理(概念)"
 date: 2019-02-12T10:17:16+08:00
 tags: [ "cnn" ]
 categories: [ "cnn" ]
