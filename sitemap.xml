@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zjj2wry.github.io/kubernetes/optimistic_concurrency_control/</loc>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zjj2wry.github.io/tensorflow/setup/</loc>
     <lastmod>2019-02-25T16:34:28+08:00</lastmod>
   </url>
@@ -58,8 +63,20 @@
   </url>
   
   <url>
+    <loc>https://zjj2wry.github.io/kubernetes/</loc>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
-    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -101,7 +118,7 @@
   
   <url>
     <loc>https://zjj2wry.github.io/</loc>
-    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
     <priority>0</priority>
   </url>
   
