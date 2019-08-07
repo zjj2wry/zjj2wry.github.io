@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://zjj2wry.github.io/sitemap.xml

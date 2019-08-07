@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/categories/</link>
+    <description>Recent content in Categories on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Jul 2019 19:28:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://zjj2wry.github.io/categories/kubernetes/</link>
+      <pubDate>Thu, 25 Jul 2019 19:28:47 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>network</title>
+      <link>https://zjj2wry.github.io/categories/network/</link>
+      <pubDate>Fri, 05 Jul 2019 00:07:24 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tensorflows</title>
+      <link>https://zjj2wry.github.io/categories/tensorflows/</link>
+      <pubDate>Mon, 25 Feb 2019 16:34:28 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/tensorflows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cnn</title>
+      <link>https://zjj2wry.github.io/categories/cnn/</link>
+      <pubDate>Tue, 12 Feb 2019 10:17:16 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/cnn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>others</title>
+      <link>https://zjj2wry.github.io/categories/others/</link>
+      <pubDate>Thu, 17 Jan 2019 11:43:30 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/categories/others/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

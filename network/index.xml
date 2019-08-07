@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Networks on zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/network/</link>
+    <description>Recent content in Networks on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 05 Jul 2019 00:07:24 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>理解 kube-proxy 中 iptables 规则</title>
+      <link>https://zjj2wry.github.io/network/iptables/</link>
+      <pubDate>Fri, 05 Jul 2019 00:07:24 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/iptables/</guid>
+      <description>&lt;h1 id=&#34;理解-kube-proxy-中-iptables-规则&#34;&gt;理解 kube-proxy 中 iptables 规则&lt;/h1&gt;
+
+&lt;h2 id=&#34;concept&#34;&gt;concept&lt;/h2&gt;
+
+&lt;p&gt;iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to Make Linux Microservice Aware With Cilium</title>
+      <link>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</link>
+      <pubDate>Thu, 27 Jun 2019 14:54:58 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://zjj2wry.github.io/network/command/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/command/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

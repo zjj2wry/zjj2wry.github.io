@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/</link>
+    <description>Recent content on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Jul 2019 19:28:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>helm 常见的 issue</title>
+      <link>https://zjj2wry.github.io/kubes/helm/</link>
+      <pubDate>Thu, 25 Jul 2019 19:28:47 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/kubes/helm/</guid>
+      <description>&lt;p&gt;现在 K8S 应用基本上都是使用 helm 作为包管理，想要部署一些应用都会使用到 helm，由于 helm 存在 server 端 tiller，客户端的权限并不能决定你能做什么，即使你本地的 kubeconfig 文件
+是 admin 权限，你能做的事情也被 tiller 限制，第二个是客户端和 server 版本的兼容性问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kubernetes ingress</title>
+      <link>https://zjj2wry.github.io/kubes/ingress/</link>
+      <pubDate>Wed, 24 Jul 2019 18:14:30 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/kubes/ingress/</guid>
+      <description>&lt;p&gt;kubernetes ingress 的作用是为你的服务提供服务的入口让其他人访问，k8s 支持一下几种方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kubernetes 日志</title>
+      <link>https://zjj2wry.github.io/kubes/logging/</link>
+      <pubDate>Wed, 24 Jul 2019 16:32:50 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/kubes/logging/</guid>
+      <description>&lt;p&gt;容器部署和进程部署应用的日志采集方式有所不同，在使用容器之前一般是通过 supervisor 的方式管理进程，supervisor 会把 stdout、stderr 的日志打到相应的目录，或者应用把日志写到节点的某个指定的目录。以 docker 为例，容器被 docker daemon 管理，docker daemon 相当于容器的父进程，docker daemon 可以拿到应用的 stdout、stderr，docker 会把日志写到指定的目录下，docker 支持&lt;a href=&#34;https://docs.docker.com/config/containers/logging/configure/&#34;&gt;多种日志驱动&lt;/a&gt;，k8s 默认使用 json-file 的方式。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>理解 kube-proxy 中 iptables 规则</title>
+      <link>https://zjj2wry.github.io/network/iptables/</link>
+      <pubDate>Fri, 05 Jul 2019 00:07:24 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/iptables/</guid>
+      <description>&lt;h1 id=&#34;理解-kube-proxy-中-iptables-规则&#34;&gt;理解 kube-proxy 中 iptables 规则&lt;/h1&gt;
+
+&lt;h2 id=&#34;concept&#34;&gt;concept&lt;/h2&gt;
+
+&lt;p&gt;iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How to Make Linux Microservice Aware With Cilium</title>
+      <link>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</link>
+      <pubDate>Thu, 27 Jun 2019 14:54:58 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>记录一些经常用到的 tips</title>
+      <link>https://zjj2wry.github.io/tips/tips/</link>
+      <pubDate>Fri, 21 Jun 2019 16:29:01 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tips/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes 中的乐观并发控制</title>
+      <link>https://zjj2wry.github.io/kubes/optimistic_concurrency_control/</link>
+      <pubDate>Thu, 14 Mar 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/kubes/optimistic_concurrency_control/</guid>
+      <description>&lt;h3 id=&#34;乐观并发控制&#34;&gt;乐观并发控制&lt;/h3&gt;
+
+&lt;p&gt;乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为 tensorflow 贡献代码</title>
+      <link>https://zjj2wry.github.io/tensorflow/setup/</link>
+      <pubDate>Mon, 25 Feb 2019 16:34:28 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tensorflow/setup/</guid>
+      <description>&lt;p&gt;tensorflow 官方没有教程教你如何去搭建 contributor 环境，相比于 kubernetes 这方面做的很差，而且很多 issue 都是提问式，而 kubernetes 有很多的开发人员主动的去 pick issue 去修复。这篇 blog 讲如何搭建一个开发者环境(想要深入了解代码，后续自己写一个 mini 版本的 tensorflow)，git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cnn 基本原理(概念)</title>
+      <link>https://zjj2wry.github.io/cnn/cnn/</link>
+      <pubDate>Tue, 12 Feb 2019 10:17:16 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/cnn/cnn/</guid>
+      <description>&lt;h2 id=&#34;为什么要使用-cnn&#34;&gt;为什么要使用 cnn？&lt;/h2&gt;
+
+&lt;h3 id=&#34;特征提取&#34;&gt;特征提取&lt;/h3&gt;
+
+&lt;p&gt;cnn 和传统神经网络一样，也是自动提取特征，因为使用了局部感受野(local receptive fields)，cnn 可以表示出相邻的像素点之间的关系，距离较近的像素相关性要远大于距离较远像素的相关性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</title>
+      <link>https://zjj2wry.github.io/tensorflow/dist/</link>
+      <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tensorflow/dist/</guid>
+      <description>&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;
+
+&lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>hugo 使用</title>
+      <link>https://zjj2wry.github.io/first/</link>
+      <pubDate>Thu, 17 Jan 2019 11:43:30 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/first/</guid>
+      <description>&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;安装 hugo 见中文文档(&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;http://www.gohugo.org/&lt;/a&gt;), 官网的例子是只提交渲染后的 html 到 github 的 repo，但是文章原始的内容也需要做版本控制，所以我使用 content 目录来存放文章的原始内容，把渲染后的 html 文件输出到 repo 的 root 目录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://zjj2wry.github.io/network/command/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zjj2wry.github.io/network/command/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

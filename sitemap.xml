@@ -1,0 +1,206 @@
+<?xml-stylesheet type="text/xsl" href="https://zjj2wry.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/kubes/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/kubes/helm/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/</loc>
+    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/kubes/ingress/</loc>
+    <lastmod>2019-07-24T18:14:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/kubes/logging/</loc>
+    <lastmod>2019-07-24T16:32:50+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/network/</loc>
+    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/network/</loc>
+    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/network/</loc>
+    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/network/iptables/</loc>
+    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</loc>
+    <lastmod>2019-06-27T14:54:58+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tips/</loc>
+    <lastmod>2019-06-21T16:29:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tips/tips/</loc>
+    <lastmod>2019-06-21T16:29:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/kubes/optimistic_concurrency_control/</loc>
+    <lastmod>2019-03-14T14:33:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tensorflow/</loc>
+    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/tensorflows/</loc>
+    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/tensorflows/</loc>
+    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tensorflow/setup/</loc>
+    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/cnn/</loc>
+    <lastmod>2019-02-12T10:17:16+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/cnn/</loc>
+    <lastmod>2019-02-12T10:17:16+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/cnn/</loc>
+    <lastmod>2019-02-12T10:17:16+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/cnn/cnn/</loc>
+    <lastmod>2019-02-12T10:17:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/distributed/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/tips/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tensorflow/dist/</loc>
+    <lastmod>2019-02-11T14:33:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/hugo/</loc>
+    <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/first/</loc>
+    <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/others/</loc>
+    <lastmod>2019-01-17T11:43:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/network/command/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

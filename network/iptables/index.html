@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>理解 kube-proxy 中 iptables 规则 - zhengjiajin&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="理解 kube-proxy 中 iptables 规则 concept iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://zjj2wry.github.io/network/iptables/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="理解 kube-proxy 中 iptables 规则" />
+<meta property="og:description" content="理解 kube-proxy 中 iptables 规则
+
+concept
+
+iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zjj2wry.github.io/network/iptables/" />
+<meta property="article:published_time" content="2019-07-05T00:07:24&#43;08:00"/>
+<meta property="article:modified_time" content="2019-07-05T00:07:24&#43;08:00"/>
+
+<meta itemprop="name" content="理解 kube-proxy 中 iptables 规则">
+<meta itemprop="description" content="理解 kube-proxy 中 iptables 规则
+
+concept
+
+iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。">
+
+
+<meta itemprop="datePublished" content="2019-07-05T00:07:24&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-05T00:07:24&#43;08:00" />
+<meta itemprop="wordCount" content="1283">
+
+
+
+<meta itemprop="keywords" content="network," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="理解 kube-proxy 中 iptables 规则"/>
+<meta name="twitter:description" content="理解 kube-proxy 中 iptables 规则
+
+concept
+
+iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h1 id="理解-kube-proxy-中-iptables-规则">理解 kube-proxy 中 iptables 规则</h1>
+
+<h2 id="concept">concept</h2>
+
+<p>iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。</p>
+
+<p>iptables 通过表来组织规则，相同功能的规则放在同一个表中。
+ - filter：负责包的过滤
+ - nat：网络地址转换
+ - mangle：修改报文
+ - raw：关闭 nat 表上启动的连接追踪
+ - security:  用于 <a href="https://wiki.archlinux.org/index.php/Security#Mandatory_access_control">强制访问控制</a> 网络规则</p>
+
+<p>iptables 的执行顺序则是按照 chain 来决定，chain 可以放各种表，执行顺序如下图</p>
+
+<p><img src="../../images/iptables.png" alt="FW-IDS-iptables-Flowchart-v2019-04-30-1" /></p>
+
+<ul>
+<li>经过本机的包：prerouting -&gt;input</li>
+<li>从本机转发出去的包：prerouting-&gt;forward-&gt;postrouting</li>
+<li>从本机出去的包：output-&gt;postrouting</li>
+</ul>
+
+<p>表的执行顺序 raw &gt; mangle &gt; filter &gt; security &gt; nat</p>
+
+<p>另外不同的 chain 中的表也不同，比如想做 filter 只能在 input、forward、output 中做，想做 nat 只能在不是 forward 的 chain 中做。</p>
+
+<h2 id="kube-proxy-中的-iptables">kube-proxy 中的 iptables</h2>
+
+<p>kube-proxy 的作用是解决集群内部的四层负载均衡，目前支持 userspace 和 内核态的 iptables 和 ipvs，通过 list-watch service 和 endpoint 来同步 iptables 的规则。service 中的 ClusterIP 是 apiserver 分配的，代码位置在 <code>pkg/registry/core/service</code>，iptables 相关的代码在 <code>pkg/proxy/iptables</code>目录，kube-proxy 主要使用了 nat 和 filster 表。</p>
+
+<h4 id="创建一个-nginx-服务">创建一个 nginx 服务</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl run nginx --image<span class="o">=</span>nginx --replicas<span class="o">=</span><span class="m">2</span>
+kubectl expose deployment nginx --port<span class="o">=</span><span class="m">8080</span> --target-port<span class="o">=</span><span class="m">80</span> --type NodePort</code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="iptables-save-查看所有的规则-无关规则已被删除">iptables-save 查看所有的规则(无关规则已被删除)</h4>
+
+<p>iptables 命令只能通过表 (-t，默认是 filter 表) 去查询链，都很不直观看起来，通过 iptables-save 查看反而清楚一些，但是规则多了可读性就有点差了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">*nat
+-A PREROUTING -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+-A OUTPUT -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+-A POSTROUTING -m comment --comment <span class="s2">&#34;kubernetes postrouting rules&#34;</span> -j KUBE-POSTROUTING
+-A KUBE-MARK-DROP -j MARK --set-xmark 0x8000/0x8000
+-A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+-A KUBE-NODEPORTS -p tcp -m comment --comment <span class="s2">&#34;default/nginx:&#34;</span> -m tcp --dport <span class="m">30180</span> -j KUBE-MARK-MASQ
+-A KUBE-NODEPORTS -p tcp -m comment --comment <span class="s2">&#34;default/nginx:&#34;</span> -m tcp --dport <span class="m">30180</span> -j KUBE-SVC-4N57TFCL4MD7ZTDA
+-A KUBE-POSTROUTING -m comment --comment <span class="s2">&#34;kubernetes service traffic requiring SNAT&#34;</span> -m mark --mark 0x4000/0x4000 -j MASQUERADE
+-A KUBE-SEP-43IWXJI557JKCKCF -s <span class="m">172</span>.17.0.5/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-43IWXJI557JKCKCF -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.5:80
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -s <span class="m">172</span>.17.0.4/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.4:80
+-A KUBE-SERVICES -d <span class="m">10</span>.105.178.199/32 -p tcp -m comment --comment <span class="s2">&#34;default/nginx: cluster IP&#34;</span> -m tcp --dport <span class="m">8080</span> -j KUBE-SVC-4N57TFCL4MD7ZTDA
+-A KUBE-SERVICES -m comment --comment <span class="s2">&#34;kubernetes service nodeports; NOTE: this must be the last rule in this chain&#34;</span> -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -m statistic --mode random --probability <span class="m">0</span>.50000000000 -j KUBE-SEP-UZXILYFQQ2IZUWN5
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -j KUBE-SEP-43IWXJI557JKCKCF
+*filter
+-A INPUT -m conntrack --ctstate NEW -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+-A INPUT -m conntrack --ctstate NEW -m comment --comment <span class="s2">&#34;kubernetes externally-visible service portals&#34;</span> -j KUBE-EXTERNAL-SERVICES
+-A INPUT -j KUBE-FIREWALL
+-A FORWARD -m comment --comment <span class="s2">&#34;kubernetes forwarding rules&#34;</span> -j KUBE-FORWARD
+-A FORWARD -m conntrack --ctstate NEW -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+-A OUTPUT -m conntrack --ctstate NEW -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+-A OUTPUT -j KUBE-FIREWALL
+-A KUBE-FIREWALL -m comment --comment <span class="s2">&#34;kubernetes firewall for dropping marked packets&#34;</span> -m mark --mark 0x8000/0x8000 -j DROP
+-A KUBE-FORWARD -m comment --comment <span class="s2">&#34;kubernetes forwarding rules&#34;</span> -m mark --mark 0x4000/0x4000 -j ACCEPT
+COMMIT</code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="访问-clusterip">访问 ClusterIP</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">-A PREROUTING -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+<span class="c1"># 匹配 ClusterIP 跳到 KUBE-SVC-4N57TFCL4MD7ZTDA 链</span>
+-A KUBE-SERVICES -d <span class="m">10</span>.105.178.199/32 -p tcp -m comment --comment <span class="s2">&#34;default/nginx: cluster IP&#34;</span> -m tcp --dport <span class="m">8080</span> -j KUBE-SVC-4N57TFCL4MD7ZTDA
+<span class="c1"># 根据 pod 的数量按概率往 endpoint 跳</span>
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -m statistic --mode random --probability <span class="m">0</span>.50000000000 -j KUBE-SEP-UZXILYFQQ2IZUWN5
+<span class="c1"># 跳到 endpoint，做 DNAT</span>
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -j KUBE-SEP-43IWXJI557JKCKCF
+-A KUBE-SEP-43IWXJI557JKCKCF -s <span class="m">172</span>.17.0.5/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-43IWXJI557JKCKCF -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.5:80
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -s <span class="m">172</span>.17.0.4/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.4:80
+<span class="c1"># 为包打标记</span>
+-A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+-A FORWARD -m comment --comment <span class="s2">&#34;kubernetes forwarding rules&#34;</span> -j KUBE-FORWARD
+<span class="c1"># 接受打上标记的包</span>
+-A KUBE-FORWARD -m comment --comment <span class="s2">&#34;kubernetes forwarding rules&#34;</span> -m mark --mark 0x4000/0x4000 -j ACCEPT
+-A KUBE-POSTROUTING -m comment --comment <span class="s2">&#34;kubernetes service traffic requiring SNAT&#34;</span> -m mark --mark 0x4000/0x4000 -j MASQUERADE</code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="访问-nodeport">访问 NodePort</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">-A PREROUTING -m comment --comment <span class="s2">&#34;kubernetes service portals&#34;</span> -j KUBE-SERVICES
+<span class="c1"># --dst-type 接受目标地址为本机的包</span>
+-A KUBE-SERVICES -m comment --comment <span class="s2">&#34;kubernetes service nodeports; NOTE: this must be the last rule in this chain&#34;</span> -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
+-A KUBE-NODEPORTS -p tcp -m comment --comment <span class="s2">&#34;default/nginx:&#34;</span> -m tcp --dport <span class="m">30180</span> -j KUBE-MARK-MASQ
+-A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+-A KUBE-NODEPORTS -p tcp -m comment --comment <span class="s2">&#34;default/nginx:&#34;</span> -m tcp --dport <span class="m">30180</span> -j KUBE-SVC-4N57TFCL4MD7ZTDA
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -m statistic --mode random --probability <span class="m">0</span>.50000000000 -j KUBE-SEP-UZXILYFQQ2IZUWN5
+<span class="c1"># 跳到 endpoint，做 DNAT</span>
+-A KUBE-SVC-4N57TFCL4MD7ZTDA -j KUBE-SEP-43IWXJI557JKCKCF
+-A KUBE-SEP-43IWXJI557JKCKCF -s <span class="m">172</span>.17.0.5/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-43IWXJI557JKCKCF -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.5:80
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -s <span class="m">172</span>.17.0.4/32 -j KUBE-MARK-MASQ
+-A KUBE-SEP-UZXILYFQQ2IZUWN5 -p tcp -m tcp -j DNAT --to-destination <span class="m">172</span>.17.0.4:80
+-A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+-A KUBE-POSTROUTING -m comment --comment <span class="s2">&#34;kubernetes service traffic requiring SNAT&#34;</span> -m mark --mark 0x4000/0x4000 -j MASQUERADE</code></pre></td></tr></table>
+</div>
+</div>
+  </div>
+</article>
+        </div>
+        
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://zjj2wry.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">olOwOlo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
