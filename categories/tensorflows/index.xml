@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>为 tensorflow 贡献代码</title>
+      <title>搭建 tensorflow 开发环境</title>
       <link>https://zjj2wry.github.io/post/tensorflow/setup/</link>
       <pubDate>Mon, 25 Feb 2019 16:34:28 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/post/tensorflow/setup/</guid>
-      <description>&lt;p&gt;tensorflow 官方没有教程教你如何去搭建 contributor 环境，相比于 kubernetes 这方面做的很差，而且很多 issue 都是提问式，而 kubernetes 有很多的开发人员主动的去 pick issue 去修复。这篇 blog 讲如何搭建一个开发者环境(想要深入了解代码，后续自己写一个 mini 版本的 tensorflow)，git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。&lt;/p&gt;</description>
+      <description>&lt;p&gt;tensorflow 官方没有教程教你如何去搭建 dev 环境，相比于 kubernetes 这方面文档不够全。这篇 blog 讲如何搭建一个开发者环境(想要深入了解代码，后续自己写一个 mini 版本的 tensorflow)，git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。&lt;/p&gt;</description>
     </item>
     
     <item>

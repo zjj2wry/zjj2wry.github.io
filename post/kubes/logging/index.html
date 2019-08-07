@@ -52,7 +52,7 @@
 
 <meta itemprop="datePublished" content="2019-07-24T16:32:50&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-24T16:32:50&#43;08:00" />
-<meta itemprop="wordCount" content="801">
+<meta itemprop="wordCount" content="815">
 
 
 
@@ -129,7 +129,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 801 words </span>
+          <span class="more-meta"> 815 words </span>
           <span class="more-meta"> 2 mins read </span>
         
       </div>
@@ -143,6 +143,8 @@
 <li>
 <ul>
 <li><a href="#日志类型">日志类型</a></li>
+<li><a href="#日志采集方案">日志采集方案</a></li>
+<li><a href="#reference">reference</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -175,28 +177,32 @@
 </div>
 <h2 id="日志类型">日志类型</h2>
 
-<ol>
-<li>系统组件的日志，apiserver、controller-manager、kubelet 等，kubelet 比较特殊，木有做容器化，日志还是通过 supervisor 的方式，所有容器化了的日志都会被输出 /var/log/&hellip; 目录下
-查看 kubelet 的日志
-<code>bash
-journalctl -l -u kubelet
-</code>
-2. 应用组件的日志，应用组件的日志通常会被输出到文件或者终端，使用容器部署应用推荐应用方把日志输出到终端，因为 pod 会漂移，采集容器中的文件日志需要一些额外的开销。
+<p>1.系统组件的日志，apiserver、controller-manager、kubelet 等，kubelet 比较特殊，木有做容器化，日志还是通过 supervisor 的方式，所有容器化了的日志都会被输出 /var/log/&hellip; 目录下</p>
 
-## 日志采集方案
+<p>查看 kubelet 的日志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">journalctl -l -u kubelet</code></pre></td></tr></table>
+</div>
+</div>
+<p>2.应用组件的日志，应用组件的日志通常会被输出到文件或者终端，使用容器部署应用推荐应用方把日志输出到终端，因为 pod 会漂移，采集容器中的文件日志需要一些额外的开销。</p>
 
-在体量较小的情况下，日志通常就是用来排查问题，在体量变大的情况下，日志统一管理和收集会变得尤为重要，除了安全审计、排查问题之外，很多公司通过对日志进行分析，也可以挖掘出这些日志数据的价值。
+<h2 id="日志采集方案">日志采集方案</h2>
 
-k8s 推荐的方式是 agent、es、kibana 来收集检索日志，agent 一般使用 fluentd，通过 daemonset 的方式部署 fluentd，保证一个节点上运行一个 fluented，然后 agent 在节点上采集日志发送后端的 backend 持久化存储日志信息。
+<p>在体量较小的情况下，日志通常就是用来排查问题，在体量变大的情况下，日志统一管理和收集会变得尤为重要，除了安全审计、排查问题之外，很多公司通过对日志进行分析，也可以挖掘出这些日志数据的价值。</p>
 
-比较特殊的情况是如何采集文件类型的日志，通常不推荐日志输出到文件中，如果要做的话，你可以把日志输出到一个 empty dir volume 下，和你的日志采集工具约定好往这个指定的 empty dir 下采集。也可以跑一个 sidecar 容器和你的应用 pod 放在一起，sidecar 把应用容器中文件 tail 到终端来采集，两种方式对应用本身都是一点侵入性，所有还是推荐把日志打到终端即可。
+<p>k8s 推荐的方式是 agent、es、kibana 来收集检索日志，agent 一般使用 fluentd，通过 daemonset 的方式部署 fluentd，保证一个节点上运行一个 fluented，然后 agent 在节点上采集日志发送后端的 backend 持久化存储日志信息。</p>
 
-## reference
+<p>比较特殊的情况是如何采集文件类型的日志，通常不推荐日志输出到文件中，如果要做的话，你可以把日志输出到一个 empty dir volume 下，和你的日志采集工具约定好往这个指定的 empty dir 下采集。也可以跑一个 sidecar 容器在你的应用中，sidecar 和容器本身是共享存储的，sidecar 采集自己容器的指定目录即可。两种方式对应用本身都是一点侵入性，所有还是推荐把日志打到终端即可。</p>
 
-<a href="https://docs.docker.com/config/containers/logging/configure/">docker log drive</a>
+<h2 id="reference">reference</h2>
 
-<a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">Logging Architecture</a></li>
-</ol>
+<p><a href="https://docs.docker.com/config/containers/logging/configure/">docker log drive</a></p>
+
+<p><a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">Logging Architecture</a></p>
     </div>
 
     <div class="post-copyright">

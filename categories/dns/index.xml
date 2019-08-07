@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>network on zhengjiajin&#39;s blog</title>
-    <link>https://zjj2wry.github.io/categories/network/</link>
-    <description>Recent content in network on zhengjiajin&#39;s blog</description>
+    <title>dns on zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/categories/dns/</link>
+    <description>Recent content in dns on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 07 Aug 2019 21:04:17 +0800</lastBuildDate>
     
-	<atom:link href="https://zjj2wry.github.io/categories/network/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zjj2wry.github.io/categories/dns/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,17 +20,6 @@
       <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
 
 &lt;p&gt;因为 dns 服务直接影响整个集群的应用，需要对 dns 有个整体的把控，dns 自身的性能(qps) 和 dns 解析的延迟等。另外 k8s 集群内部中有很多服务需要访问外部的服务，比如数据库实例 mysql、redis 等，可以通过定制化 dns config 优化 dns 的性能。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>理解 kube-proxy 中 iptables 规则</title>
-      <link>https://zjj2wry.github.io/post/network/iptables/</link>
-      <pubDate>Fri, 05 Jul 2019 00:07:24 +0800</pubDate>
-      
-      <guid>https://zjj2wry.github.io/post/network/iptables/</guid>
-      <description>&lt;h2 id=&#34;concept&#34;&gt;concept&lt;/h2&gt;
-
-&lt;p&gt;iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。&lt;/p&gt;</description>
     </item>
     
   </channel>

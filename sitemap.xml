@@ -3,19 +3,68 @@
   
   <url>
     <loc>https://zjj2wry.github.io/categories/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zjj2wry.github.io/post/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zjj2wry.github.io/tags/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/dns/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/dns/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/post/network/perf/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/kubernetes/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/network/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/network/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/</loc>
+    <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -24,24 +73,6 @@
     <lastmod>2019-07-25T19:28:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/tags/kubernetes/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/</loc>
-    <lastmod>2019-07-25T19:28:47+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -56,18 +87,6 @@
     <lastmod>2019-07-24T16:32:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/categories/network/</loc>
-    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/tags/network/</loc>
-    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

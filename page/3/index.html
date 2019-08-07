@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zjj2wry.github.io/" />
 
-<meta property="og:updated_time" content="2019-07-25T19:28:47&#43;08:00"/>
+<meta property="og:updated_time" content="2019-08-07T21:04:17&#43;08:00"/>
 
 <meta itemprop="name" content="zhengjiajin&#39;s blog">
 <meta itemprop="description" content="Hugo theme even example site.">
@@ -113,6 +113,32 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/tensorflow/dist/">使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-02-11 </span>
+      <div class="post-category">
+          <a href="/categories/tensorflows/"> tensorflows </a>
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+        <span class="more-meta"> 247 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h3 id="worker-执行完任务后没有正常退出-seession-close-失败">worker 执行完任务后没有正常退出(seession close 失败)</h3>
+
+<p>tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/tensorflow/dist/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/first/">hugo 使用</a></h1>

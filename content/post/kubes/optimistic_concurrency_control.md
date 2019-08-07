@@ -5,15 +5,15 @@ tags: [ "kubernetes" ]
 categories: [ "kubernetes" ]
 ---
 
-### 乐观并发控制
+## 乐观并发控制
 
 乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。<!--more--> 
 
-### kubernetes 中的乐观并发控制(cas: compare and swap)
+### kubernetes 中的乐观并发控制(compare and swap)
 
 k8s 的资源都有一个 metadata.ResourceVersion 字段，在更新一个资源的时候都需要带上该字段，也就是你在执行 update 操作之前通常会先执行 get 操作，server 端会比较该字段，如果相同则更新成功，更新成功后会修改该字段，如果有另外一个进程或者线程修改该字段则会失败。
 
-### kubernetes 的乐观并发控制在其他地方的使用
+### kubernetes 中的乐观并发控制的高级使用
 
 #### leader election
 
@@ -51,7 +51,7 @@ items:
 
 k8s 的分区有个 quota 机制，可以用来限制分区可以使用的资源大小，比如上图中某分区的 quota 中 gpu 可用数量是 1，如果有两个 pod 要使用 gpu，那么会有一个 pod 无法创建成功。大概的逻辑是创建 pod 的时候会先去检查 quota 的资源够不够(hard-used)，如果够的话，会更新 quota 的 status，因为同时更新会有一个失败，然后资源就被其中一个使用了，另一个永远无法成功。但是现在的 resource quota 还是有问题，可能会出现更新了 quota 的 status 成功了，但是 pod 创建失败的情况，然后 status 的资源一直被占用。现在 kubernetes 是通过在 quota controller 中设置了 5 mins 的 resync(重新把 cache 里的资源 enqueue) 时间解决这个问题。
 
-### 悲观并发控制
+## 悲观并发控制
 悲观并发控制保持着悲观的态度，认为并发执行过程一定会出现问题。
 
 传统的锁机制都是悲观并发控制的实现，通过加锁从而保证多线程互斥地修改和访问共享数据，那么多线程就不会竞争使用共享数据，也就不会产生线程安全问题。

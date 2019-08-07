@@ -19,12 +19,14 @@ func main() {
 
 ## 日志类型
 
-1. 系统组件的日志，apiserver、controller-manager、kubelet 等，kubelet 比较特殊，木有做容器化，日志还是通过 supervisor 的方式，所有容器化了的日志都会被输出 /var/log/... 目录下
+1.系统组件的日志，apiserver、controller-manager、kubelet 等，kubelet 比较特殊，木有做容器化，日志还是通过 supervisor 的方式，所有容器化了的日志都会被输出 /var/log/... 目录下
+
 查看 kubelet 的日志
 ```bash
 journalctl -l -u kubelet
 ```
-2. 应用组件的日志，应用组件的日志通常会被输出到文件或者终端，使用容器部署应用推荐应用方把日志输出到终端，因为 pod 会漂移，采集容器中的文件日志需要一些额外的开销。
+
+2.应用组件的日志，应用组件的日志通常会被输出到文件或者终端，使用容器部署应用推荐应用方把日志输出到终端，因为 pod 会漂移，采集容器中的文件日志需要一些额外的开销。
 
 ## 日志采集方案
 
@@ -32,7 +34,7 @@ journalctl -l -u kubelet
 
 k8s 推荐的方式是 agent、es、kibana 来收集检索日志，agent 一般使用 fluentd，通过 daemonset 的方式部署 fluentd，保证一个节点上运行一个 fluented，然后 agent 在节点上采集日志发送后端的 backend 持久化存储日志信息。
 
-比较特殊的情况是如何采集文件类型的日志，通常不推荐日志输出到文件中，如果要做的话，你可以把日志输出到一个 empty dir volume 下，和你的日志采集工具约定好往这个指定的 empty dir 下采集。也可以跑一个 sidecar 容器和你的应用 pod 放在一起，sidecar 把应用容器中文件 tail 到终端来采集，两种方式对应用本身都是一点侵入性，所有还是推荐把日志打到终端即可。
+比较特殊的情况是如何采集文件类型的日志，通常不推荐日志输出到文件中，如果要做的话，你可以把日志输出到一个 empty dir volume 下，和你的日志采集工具约定好往这个指定的 empty dir 下采集。也可以跑一个 sidecar 容器在你的应用中，sidecar 和容器本身是共享存储的，sidecar 采集自己容器的指定目录即可。两种方式对应用本身都是一点侵入性，所有还是推荐把日志打到终端即可。
 
 ## reference
 

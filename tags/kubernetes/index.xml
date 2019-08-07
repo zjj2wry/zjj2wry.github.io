@@ -6,10 +6,21 @@
     <description>Recent content in kubernetes on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Jul 2019 19:28:47 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Aug 2019 21:04:17 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>k8s dns 优化</title>
+      <link>https://zjj2wry.github.io/post/network/perf/</link>
+      <pubDate>Wed, 07 Aug 2019 21:04:17 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/network/perf/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;因为 dns 服务直接影响整个集群的应用，需要对 dns 有个整体的把控，dns 自身的性能(qps) 和 dns 解析的延迟等。另外 k8s 集群内部中有很多服务需要访问外部的服务，比如数据库实例 mysql、redis 等，可以通过定制化 dns config 优化 dns 的性能。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>helm 常见的 issue</title>
@@ -27,7 +38,7 @@
       <pubDate>Wed, 24 Jul 2019 18:14:30 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/post/kubes/ingress/</guid>
-      <description>&lt;p&gt;kubernetes ingress 的作用是为你的服务提供服务的入口让其他人访问，k8s 支持一下几种方式&lt;/p&gt;</description>
+      <description>&lt;p&gt;kubernetes ingress 的作用是提供服务的入口让其他人访问，k8s 支持一下几种方式&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,7 +56,7 @@
       <pubDate>Thu, 14 Mar 2019 14:33:25 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/post/kubes/optimistic_concurrency_control/</guid>
-      <description>&lt;h3 id=&#34;乐观并发控制&#34;&gt;乐观并发控制&lt;/h3&gt;
+      <description>&lt;h2 id=&#34;乐观并发控制&#34;&gt;乐观并发控制&lt;/h2&gt;
 
 &lt;p&gt;乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。&lt;/p&gt;</description>
     </item>

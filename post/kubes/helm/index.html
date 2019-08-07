@@ -141,16 +141,22 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#客户端和-server-端口版本不一致">客户端和 server 端口版本不一致</a></li>
+<li><a href="#tiller-权限不足">tiller 权限不足</a></li>
+</ul></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
       <p>现在 K8S 应用基本上都是使用 helm 作为包管理，想要部署一些应用都会使用到 helm，由于 helm 存在 server 端 tiller，客户端的权限并不能决定你能做什么，即使你本地的 kubeconfig 文件
 是 admin 权限，你能做的事情也被 tiller 限制，第二个是客户端和 server 版本的兼容性问题。</p>
 
-<ol>
-<li>客户端和 server 端口版本不一致</li>
-</ol>
+<h2 id="客户端和-server-端口版本不一致">客户端和 server 端口版本不一致</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -188,9 +194,7 @@ Server: <span class="p">&amp;</span>version.Version<span class="o">{</span>SemVe
 ➜  deployment git:<span class="o">(</span>master<span class="o">)</span> ✗ helm install stable/node-problem-detector --name node-problem-detector</code></pre></td></tr></table>
 </div>
 </div>
-<ol>
-<li>tiller 权限不足</li>
-</ol>
+<h2 id="tiller-权限不足">tiller 权限不足</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
@@ -286,7 +290,11 @@ Error: release nginx failed: namespaces <span class="s2">&#34;default&#34;</span
           <a href="/tags/kubernetes/">kubernetes</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/network/perf/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">k8s dns 优化</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="/post/kubes/ingress/">
             <span class="next-text nav-default">kubernetes ingress</span>
             <span class="next-text nav-mobile">Next</span>

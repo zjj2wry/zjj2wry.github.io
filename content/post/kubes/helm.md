@@ -8,7 +8,7 @@ categories: [ "kubernetes" ]
 现在 K8S 应用基本上都是使用 helm 作为包管理，想要部署一些应用都会使用到 helm，由于 helm 存在 server 端 tiller，客户端的权限并不能决定你能做什么，即使你本地的 kubeconfig 文件
 是 admin 权限，你能做的事情也被 tiller 限制，第二个是客户端和 server 版本的兼容性问题。<!--more-->
 
-1. 客户端和 server 端口版本不一致
+## 客户端和 server 端口版本不一致
 
 ```bash
 ➜  deployment git:(master) ✗ helm install stable/node-problem-detector --name node-problem-detector
@@ -31,7 +31,7 @@ Server: &version.Version{SemVer:"v2.14.2", GitCommit:"a8b13cc5ab6a7dbef0a58f5061
 ```
 
 
-2. tiller 权限不足
+## tiller 权限不足
 
 ```bash
 helm install --name nginx stable/node-problem-detector
@@ -73,4 +73,3 @@ subjects:
 ```bash
 helm init --service-account tiller --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.7.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 ```
-

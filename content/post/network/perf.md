@@ -33,7 +33,32 @@ k8s dns 的作用是提供内部的服务发现机制，pod 支持的 dns policy
 
 ### issue 1: ndots
 
-上面的 known issue 1 描述的很清楚了，k8s 默认的 dns policy 是 ClusterFirst，会导致额外的查询查询次数。
+上面的 known issue 1 描述的很清楚了，k8s 默认的 dns policy 是 ClusterFirst，因为 ndots 和 serach domain 在访问外部 dns 会有额外的查询次数。
+
+```
+root@tmp-55c7865869-fdrt6:/# host -v baidu.com
+Trying "baidu.com.default.svc.cluster.local"
+Trying "baidu.com.svc.cluster.local"
+Trying "baidu.com.cluster.local"
+Trying "baidu.com"
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50562
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;baidu.com.			IN	A
+
+;; ANSWER SECTION:
+baidu.com.		30	IN	A	220.181.38.148
+baidu.com.		30	IN	A	39.156.69.79
+
+Received 77 bytes from 10.96.0.10#53 in 24 ms
+Trying "baidu.com"
+Host baidu.com not found: 3(NXDOMAIN)
+Received 27 bytes from 10.96.0.10#53 in 2 ms
+Trying "baidu.com"
+Host baidu.com not found: 3(NXDOMAIN)
+Received 27 bytes from 10.96.0.10#53 in 1 ms
+```
 
 coredns log:
 ```bash
@@ -48,7 +73,7 @@ coredns log:
 2. 通过自定义 dns config，覆盖集群内的 ndots 数量，如果你访问的域名 dots 数量大于 ndots 会跳过搜索域的查询直接访问你的 dns
 
 #### 性能测试
-下面是 coredns 的默认配置，如果使用 ClusterFirst 测试去访问外部的 dns，因为 coredns 解析不了会 proxy 到 coredns 的 /etc/resolv.conf，coredns 使用的是 default，也就是说最后会通过 coredns 所在节点解析该 dns。
+下面是 coredns 的默认配置，使用 dnspolicy ClusterFirst 测试去访问外部的 dns，coredns 解析不了会 proxy 到 coredns 的 /etc/resolv.conf，因为 coredns 的 dnspolicy 是 Default，也就是说最后会通过 coredns 所在节点的 /etc/resolver.config 解析。
 ```
 apiVersion: v1
 data:
@@ -248,4 +273,3 @@ externalName: myapp.rds.whatever.aws.says
 - [kubernetes pod resolver](https://github.com/kubernetes/kubernetes/issues/78138)(结论应该是取决于镜像本身，alpine 会并发的查询 A 和 AAAA)
 - [proposal for service externalName](https://github.com/kubernetes/kubernetes/pull/29073/files)
 - https://github.com/coredns/presentations
-
