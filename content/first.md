@@ -26,7 +26,7 @@ Params:
 MetadataFormat: "yaml"
 ```
 ## 写博客
-在博客的头部添加文章的 metadata 信息，然后内容使用 markdown 格式写就完事了。
+在博客的头部添加文章的 metadata 信息或者使用 `hugo new tips/tips.md`，然后内容使用 markdown 格式写就完事了。
 
 ```yaml
 ---
