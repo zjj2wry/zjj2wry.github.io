@@ -13,10 +13,10 @@
     
     <item>
       <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</title>
-      <link>https://zjj2wry.github.io/tensorflow/dist/</link>
+      <link>https://zjj2wry.github.io/post/tensorflow/dist/</link>
       <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
       
-      <guid>https://zjj2wry.github.io/tensorflow/dist/</guid>
+      <guid>https://zjj2wry.github.io/post/tensorflow/dist/</guid>
       <description>&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;
 
 &lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;</description>

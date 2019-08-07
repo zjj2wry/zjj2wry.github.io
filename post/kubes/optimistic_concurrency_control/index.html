@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>kubernetes 中的乐观并发控制 - zhengjiajin&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="zhengjiajin" /><meta name="description" content="乐观并发控制 乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://zjj2wry.github.io/post/kubes/optimistic_concurrency_control/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="kubernetes 中的乐观并发控制" />
+<meta property="og:description" content="乐观并发控制
+
+乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zjj2wry.github.io/post/kubes/optimistic_concurrency_control/" />
+<meta property="article:published_time" content="2019-03-14T14:33:25&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-14T14:33:25&#43;08:00"/>
+
+<meta itemprop="name" content="kubernetes 中的乐观并发控制">
+<meta itemprop="description" content="乐观并发控制
+
+乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。">
+
+
+<meta itemprop="datePublished" content="2019-03-14T14:33:25&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-14T14:33:25&#43;08:00" />
+<meta itemprop="wordCount" content="1256">
+
+
+
+<meta itemprop="keywords" content="kubernetes," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="kubernetes 中的乐观并发控制"/>
+<meta name="twitter:description" content="乐观并发控制
+
+乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">kubernetes 中的乐观并发控制</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-14 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#乐观并发控制">乐观并发控制</a></li>
+<li><a href="#kubernetes-中的乐观并发控制-cas-compare-and-swap">kubernetes 中的乐观并发控制(cas: compare and swap)</a></li>
+<li><a href="#kubernetes-的乐观并发控制在其他地方的使用">kubernetes 的乐观并发控制在其他地方的使用</a>
+<ul>
+<li><a href="#leader-election">leader election</a></li>
+<li><a href="#抢占-resource-quota-资源">抢占 resource quota 资源</a></li>
+</ul></li>
+<li><a href="#悲观并发控制">悲观并发控制</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="乐观并发控制">乐观并发控制</h3>
+
+<p>乐观并发控制指的是它保持乐观的态度，认为并发执行过程不会对共享数据出现竞争问题。只在修改数据的时候检查共享数据是否出现竞争问题，如果在修改的时候其他的进程没有修改过该共享数据，则修改成功。</p>
+
+<h3 id="kubernetes-中的乐观并发控制-cas-compare-and-swap">kubernetes 中的乐观并发控制(cas: compare and swap)</h3>
+
+<p>k8s 的资源都有一个 metadata.ResourceVersion 字段，在更新一个资源的时候都需要带上该字段，也就是你在执行 update 操作之前通常会先执行 get 操作，server 端会比较该字段，如果相同则更新成功，更新成功后会修改该字段，如果有另外一个进程或者线程修改该字段则会失败。</p>
+
+<h3 id="kubernetes-的乐观并发控制在其他地方的使用">kubernetes 的乐观并发控制在其他地方的使用</h3>
+
+<h4 id="leader-election">leader election</h4>
+
+<p>leader election 指的是一个程序为了高可用会有多个副本，但是每一个时候只允许一个进程在工作，比如说转账业务。再比如 k8s 的 controller manager, 因为 controller manager 是 k8s 的核心组建之一，需要保证高可用，假设你是一个多 master 的集群，挂了一个节点应该保证你的集群可以正常的工作，但是 controller manager 中的 controller 其实做的事情是一样的，大部分事情就是 watch 资源，更新 status，上面说过多个进程同时更新一个资源的时候会失败，controller manager 多个副本同时工作没有什么意义。k8s 基于乐观并发控制实现了 leader election。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">✗ kubectl get ep -n kube-system kube-scheduler -o yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  annotations:
+    control-plane.alpha.kubernetes.io/leader: <span class="s1">&#39;{&#34;holderIdentity&#34;:&#34;kube-master-1_ad5220de-2442-11e9-91f6-52540025e0cf&#34;,&#34;leaseDurationSeconds&#34;:15,&#34;acquireTime&#34;:&#34;2019-02-22T02:09:15Z&#34;,&#34;renewTime&#34;:&#34;2019-03-14T07:37:19Z&#34;,&#34;leaderTransitions&#34;:1}&#39;</span>
+  name: kube-scheduler
+  namespace: kube-system</code></pre></td></tr></table>
+</div>
+</div>
+<p>holderIdentity：表示当前那个副本在工作
+leaseDurationSeconds：租期的时间
+acquireTime：获得锁的时间
+renewTime：刷新锁的时间
+leaderTransitions：leader 交换的次数</p>
+
+<p>大概的逻辑就是刚启动的时候多个副本会去同时更新 kube-scheduler 这个 endpoint(获取锁)，这个时候会有一个副本更新成功，其他的会更新失败, 然后这个锁会有一个租期，这个进程会有个时间间隔(小于租期，一般设置是租期间隔的一般)不断的去更新 kube-scheduler 这个 endpoint(获取锁), 其他的进程也会去尝试获取锁，如果 leader 所在的节点挂了，那么其他的进程就会得到锁成为 leader。</p>
+
+<h4 id="抢占-resource-quota-资源">抢占 resource quota 资源</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span>items<span class="p">:</span><span class="w">
+</span><span class="w"></span>-<span class="w"> </span>apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">  </span>kind<span class="p">:</span><span class="w"> </span>ResourceQuota<span class="w">
+</span><span class="w">  </span>status<span class="p">:</span><span class="w">
+</span><span class="w">    </span>hard<span class="p">:</span><span class="w">
+</span><span class="w">      </span>requests.nvidia.com/gpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;1&#34;</span><span class="w">
+</span><span class="w">    </span>used<span class="p">:</span><span class="w">
+</span><span class="w">      </span>requests.nvidia.com/gpu<span class="p">:</span><span class="w"> </span><span class="s2">&#34;0&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>k8s 的分区有个 quota 机制，可以用来限制分区可以使用的资源大小，比如上图中某分区的 quota 中 gpu 可用数量是 1，如果有两个 pod 要使用 gpu，那么会有一个 pod 无法创建成功。大概的逻辑是创建 pod 的时候会先去检查 quota 的资源够不够(hard-used)，如果够的话，会更新 quota 的 status，因为同时更新会有一个失败，然后资源就被其中一个使用了，另一个永远无法成功。但是现在的 resource quota 还是有问题，可能会出现更新了 quota 的 status 成功了，但是 pod 创建失败的情况，然后 status 的资源一直被占用。现在 kubernetes 是通过在 quota controller 中设置了 5 mins 的 resync(重新把 cache 里的资源 enqueue) 时间解决这个问题。</p>
+
+<h3 id="悲观并发控制">悲观并发控制</h3>
+
+<p>悲观并发控制保持着悲观的态度，认为并发执行过程一定会出现问题。</p>
+
+<p>传统的锁机制都是悲观并发控制的实现，通过加锁从而保证多线程互斥地修改和访问共享数据，那么多线程就不会竞争使用共享数据，也就不会产生线程安全问题。</p>
+
+<p>读锁(共享锁): 对该共享数据加锁，可以读取和修改，加锁期间其他的进程不能读写，也不能对该共享数据加锁
+写锁(排它锁): 对该共享数据加锁，可以读取，加锁期间其他的进程只能加读锁。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">zhengjiajin</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-03-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/tips/tips/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">记录一些经常用到的 tips</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/tensorflow/setup/">
+            <span class="next-text nav-default">为 tensorflow 贡献代码</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://zjj2wry.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">zhengjiajin</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

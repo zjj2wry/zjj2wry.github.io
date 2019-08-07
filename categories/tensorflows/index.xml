@@ -13,19 +13,19 @@
     
     <item>
       <title>为 tensorflow 贡献代码</title>
-      <link>https://zjj2wry.github.io/tensorflow/setup/</link>
+      <link>https://zjj2wry.github.io/post/tensorflow/setup/</link>
       <pubDate>Mon, 25 Feb 2019 16:34:28 +0800</pubDate>
       
-      <guid>https://zjj2wry.github.io/tensorflow/setup/</guid>
+      <guid>https://zjj2wry.github.io/post/tensorflow/setup/</guid>
       <description>&lt;p&gt;tensorflow 官方没有教程教你如何去搭建 contributor 环境，相比于 kubernetes 这方面做的很差，而且很多 issue 都是提问式，而 kubernetes 有很多的开发人员主动的去 pick issue 去修复。这篇 blog 讲如何搭建一个开发者环境(想要深入了解代码，后续自己写一个 mini 版本的 tensorflow)，git clone 后的 tensorflow 包是无法直接被代码引用的，但是使用 pip install tensorflow 代码会在 pip package 里面。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用 kubernetes 运行 tensorflow 分布式训练时的常见问题</title>
-      <link>https://zjj2wry.github.io/tensorflow/dist/</link>
+      <link>https://zjj2wry.github.io/post/tensorflow/dist/</link>
       <pubDate>Mon, 11 Feb 2019 14:33:25 +0800</pubDate>
       
-      <guid>https://zjj2wry.github.io/tensorflow/dist/</guid>
+      <guid>https://zjj2wry.github.io/post/tensorflow/dist/</guid>
       <description>&lt;h3 id=&#34;worker-执行完任务后没有正常退出-seession-close-失败&#34;&gt;worker 执行完任务后没有正常退出(seession close 失败)&lt;/h3&gt;
 
 &lt;p&gt;tensorflow 分布式训练可以使用 Supervisor 和 MonitoredTrainingSession, 后者是 tensorflow 推荐的方式，使用 tf-operator 运行分布式训练的时候，训练结束后 worker 没有正常退出，因为都是容器，导致的结果是资源无法正常回收。&lt;/p&gt;</description>

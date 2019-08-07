@@ -8,7 +8,7 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/kubes/</loc>
+    <loc>https://zjj2wry.github.io/post/</loc>
     <lastmod>2019-07-25T19:28:47+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/kubes/helm/</loc>
+    <loc>https://zjj2wry.github.io/post/kubes/helm/</loc>
     <lastmod>2019-07-25T19:28:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -45,23 +45,17 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/kubes/ingress/</loc>
+    <loc>https://zjj2wry.github.io/post/kubes/ingress/</loc>
     <lastmod>2019-07-24T18:14:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/kubes/logging/</loc>
+    <loc>https://zjj2wry.github.io/post/kubes/logging/</loc>
     <lastmod>2019-07-24T16:32:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/network/</loc>
-    <lastmod>2019-07-05T00:07:24+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -77,43 +71,31 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/network/iptables/</loc>
+    <loc>https://zjj2wry.github.io/post/network/iptables/</loc>
     <lastmod>2019-07-05T00:07:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/network/how-to-make-linux-microservice-aware-with-cilium/</loc>
+    <loc>https://zjj2wry.github.io/post/network/how-to-make-linux-microservice-aware-with-cilium/</loc>
     <lastmod>2019-06-27T14:54:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tips/</loc>
-    <lastmod>2019-06-21T16:29:01+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/tips/tips/</loc>
+    <loc>https://zjj2wry.github.io/post/tips/tips/</loc>
     <lastmod>2019-06-21T16:29:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/kubes/optimistic_concurrency_control/</loc>
+    <loc>https://zjj2wry.github.io/post/kubes/optimistic_concurrency_control/</loc>
     <lastmod>2019-03-14T14:33:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/tensorflow/</loc>
-    <lastmod>2019-02-25T16:34:28+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -129,16 +111,10 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tensorflow/setup/</loc>
+    <loc>https://zjj2wry.github.io/post/tensorflow/setup/</loc>
     <lastmod>2019-02-25T16:34:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/cnn/</loc>
-    <lastmod>2019-02-12T10:17:16+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -154,7 +130,7 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/cnn/cnn/</loc>
+    <loc>https://zjj2wry.github.io/post/cnn/cnn/</loc>
     <lastmod>2019-02-12T10:17:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -173,7 +149,7 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tensorflow/dist/</loc>
+    <loc>https://zjj2wry.github.io/post/tensorflow/dist/</loc>
     <lastmod>2019-02-11T14:33:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -186,7 +162,7 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/first/</loc>
+    <loc>https://zjj2wry.github.io/post/first/</loc>
     <lastmod>2019-01-17T11:43:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -195,11 +171,6 @@
   <url>
     <loc>https://zjj2wry.github.io/categories/others/</loc>
     <lastmod>2019-01-17T11:43:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/network/command/</loc>
     <priority>0</priority>
   </url>
   

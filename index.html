@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="olOwOlo" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="zhengjiajin" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -113,11 +113,121 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/kubes/helm/">helm 常见的 issue</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-25 </span>
+      <div class="post-category">
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>现在 K8S 应用基本上都是使用 helm 作为包管理，想要部署一些应用都会使用到 helm，由于 helm 存在 server 端 tiller，客户端的权限并不能决定你能做什么，即使你本地的 kubeconfig 文件
+是 admin 权限，你能做的事情也被 tiller 限制，第二个是客户端和 server 版本的兼容性问题。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/kubes/helm/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/kubes/ingress/">kubernetes ingress</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-24 </span>
+      <div class="post-category">
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>kubernetes ingress 的作用是为你的服务提供服务的入口让其他人访问，k8s 支持一下几种方式</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/kubes/ingress/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/kubes/logging/">kubernetes 日志</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-24 </span>
+      <div class="post-category">
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>容器部署和进程部署应用的日志采集方式有所不同，在使用容器之前一般是通过 supervisor 的方式管理进程，supervisor 会把 stdout、stderr 的日志打到相应的目录，或者应用把日志写到节点的某个指定的目录。以 docker 为例，容器被 docker daemon 管理，docker daemon 相当于容器的父进程，docker daemon 可以拿到应用的 stdout、stderr，docker 会把日志写到指定的目录下，docker 支持<a href="https://docs.docker.com/config/containers/logging/configure/">多种日志驱动</a>，k8s 默认使用 json-file 的方式。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/kubes/logging/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/network/iptables/">理解 kube-proxy 中 iptables 规则</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-05 </span>
+      <div class="post-category">
+          <a href="/categories/network/"> network </a>
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="concept">concept</h2>
+
+<p>iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/network/iptables/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/network/how-to-make-linux-microservice-aware-with-cilium/">How to Make Linux Microservice Aware With Cilium</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-06-27 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      
+    </div>
+    <div class="read-more">
+      <a href="/post/network/how-to-make-linux-microservice-aware-with-cilium/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
     </section>
   
   <nav class="pagination">
     
-    
+    <a class="next" href="/page/2/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
   </nav>
         </div>
         
@@ -164,7 +274,7 @@
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
-    <span class="author">olOwOlo</span>
+    <span class="author">zhengjiajin</span>
   </span>
 </div>
     </footer>
