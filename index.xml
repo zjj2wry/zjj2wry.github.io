@@ -33,12 +33,12 @@
     </item>
     
     <item>
-      <title>kubernetes ingress</title>
+      <title>kubernetes ingress 实践</title>
       <link>https://zjj2wry.github.io/post/kubes/ingress/</link>
       <pubDate>Wed, 24 Jul 2019 18:14:30 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/post/kubes/ingress/</guid>
-      <description>&lt;p&gt;kubernetes ingress 的作用是提供服务的入口让其他人访问，k8s 支持一下几种方式&lt;/p&gt;</description>
+      <description>concept 如何为 Service Mesh 选择入口网关 A Deep Dive into Kubernetes External Traffic Policies 追踪 kubernetes 服务的SNAT ingress 部署方式 1.nodePort 方式，服务端口固定 30000~32XXX，LB 指向集群中的任意几台。</description>
     </item>
     
     <item>

@@ -56,7 +56,7 @@
 
 <meta itemprop="datePublished" content="2019-08-07T21:04:17&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-07T21:04:17&#43;08:00" />
-<meta itemprop="wordCount" content="1732">
+<meta itemprop="wordCount" content="1838">
 
 
 
@@ -137,7 +137,7 @@
             <a href="/categories/dns/"> dns </a>
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1732 words </span>
+          <span class="more-meta"> 1838 words </span>
           <span class="more-meta"> 4 mins read </span>
         
       </div>
@@ -161,6 +161,7 @@
 </ul></li>
 <li><a href="#issue-2-timeout">issue 2: timeout</a></li>
 </ul></li>
+<li><a href="#coredns-配置">coredns 配置</a></li>
 <li><a href="#advanced-options">advanced options</a>
 <ul>
 <li>
@@ -555,6 +556,19 @@ CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20190811044
 <li>使用 <a href="https://github.com/kubernetes/enhancements/pull/1005">nodelocaldns</a>，nodelocaldns 会对整个 dns 解析有一个优化，但是升级会比较麻烦，高可用方案现在只能用于 kube-proxy 的 iptables。</li>
 </ol>
 
+<h2 id="coredns-配置">coredns 配置</h2>
+
+<p>根据 <a href="http://perf-dash.k8s.io">kubedns 性能测试</a> 的报告，根据规模可以调整 coredns 的 request 和 limit。</p>
+
+<p>设置 coredns 为 critical pod，避免节点内存压力被驱逐，目前集群中除了系统组件外，还有 coredns 和 ingress controller 设置为 critical pod</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">kubectl -n kube-system patch deployment nginx-ingress-controller -p &#39;{&#34;spec&#34;: {&#34;template&#34;: {&#34;spec&#34;: {&#34;priorityClassName&#34;: &#34;system-cluster-critical&#34;}}}}&#39;</pre></td></tr></table>
+</div>
+</div>
 <h2 id="advanced-options">advanced options</h2>
 
 <h4 id="自定义-name-server">自定义 name server</h4>
@@ -643,7 +657,9 @@ CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20190811044
 <li><a href="https://linux.die.net/man/5/resolv.conf">man resolv.conf</a></li>
 <li><a href="https://github.com/kubernetes/kubernetes/issues/78138">kubernetes pod resolver</a>(结论应该是取决于镜像本身，alpine 会并发的查询 A 和 AAAA)</li>
 <li><a href="https://github.com/kubernetes/kubernetes/pull/29073/files">proposal for service externalName</a></li>
-<li><a href="https://github.com/coredns/presentations">https://github.com/coredns/presentations</a></li>
+<li><a href="https://github.com/coredns/presentations">coredns ppt</a></li>
+<li><a href="https://github.com/coredns/deployment/tree/master/kubernetes">dns 升级迁移和资源配额</a></li>
+<li><a href="http://perf-dash.k8s.io">kubedns 性能测试</a></li>
 </ul>
     </div>
 

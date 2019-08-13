@@ -221,6 +221,14 @@ Statistics:
 2. 自定义 dnsconfig，添加 option
 3. 使用 [nodelocaldns](https://github.com/kubernetes/enhancements/pull/1005)，nodelocaldns 会对整个 dns 解析有一个优化，但是升级会比较麻烦，高可用方案现在只能用于 kube-proxy 的 iptables。
 
+## coredns 配置
+根据 [kubedns 性能测试](http://perf-dash.k8s.io) 的报告，根据规模可以调整 coredns 的 request 和 limit。
+
+设置 coredns 为 critical pod，避免节点内存压力被驱逐，目前集群中除了系统组件外，还有 coredns 和 ingress controller 设置为 critical pod
+```
+kubectl -n kube-system patch deployment nginx-ingress-controller -p '{"spec": {"template": {"spec": {"priorityClassName": "system-cluster-critical"}}}}'
+```
+
 ## advanced options
 
 #### 自定义 name server
@@ -272,4 +280,6 @@ externalName: myapp.rds.whatever.aws.says
 - [man resolv.conf](https://linux.die.net/man/5/resolv.conf)
 - [kubernetes pod resolver](https://github.com/kubernetes/kubernetes/issues/78138)(结论应该是取决于镜像本身，alpine 会并发的查询 A 和 AAAA)
 - [proposal for service externalName](https://github.com/kubernetes/kubernetes/pull/29073/files)
-- https://github.com/coredns/presentations
+- [coredns ppt](https://github.com/coredns/presentations)
+- [dns 升级迁移和资源配额](https://github.com/coredns/deployment/tree/master/kubernetes)
+- [kubedns 性能测试](http://perf-dash.k8s.io)
