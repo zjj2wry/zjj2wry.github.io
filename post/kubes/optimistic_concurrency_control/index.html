@@ -56,7 +56,7 @@
 
 <meta itemprop="datePublished" content="2019-03-14T14:33:25&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-14T14:33:25&#43;08:00" />
-<meta itemprop="wordCount" content="1256">
+<meta itemprop="wordCount" content="1261">
 
 
 
@@ -135,7 +135,7 @@
         <div class="post-category">
             <a href="/categories/kubernetes/"> kubernetes </a>
             </div>
-          <span class="more-meta"> 1256 words </span>
+          <span class="more-meta"> 1261 words </span>
           <span class="more-meta"> 3 mins read </span>
         
       </div>
@@ -158,6 +158,7 @@
 </ul></li>
 </ul></li>
 <li><a href="#悲观并发控制">悲观并发控制</a></li>
+<li><a href="#reference">reference</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -242,6 +243,10 @@ leaderTransitions：leader 交换的次数</p>
 
 <p>读锁(共享锁): 对该共享数据加锁，可以读取和修改，加锁期间其他的进程不能读写，也不能对该共享数据加锁
 写锁(排它锁): 对该共享数据加锁，可以读取，加锁期间其他的进程只能加读锁。</p>
+
+<h2 id="reference">reference</h2>
+
+<p><a href="https://github.com/kubernetes/kubernetes/blob/6a2d0f67d145d7d134713ebc0f5ce0ba9bbf937d/staging/src/k8s.io/apiserver/pkg/registry/generic/registry/store.go#L474-L567">apiserver precess update code</a></p>
     </div>
 
     <div class="post-copyright">

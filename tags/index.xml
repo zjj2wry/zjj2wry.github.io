@@ -6,10 +6,19 @@
     <description>Recent content in Tags on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Aug 2019 21:04:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 17:23:01 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://zjj2wry.github.io/tags/kubernetes/</link>
+      <pubDate>Mon, 19 Aug 2019 17:23:01 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dns</title>
@@ -17,15 +26,6 @@
       <pubDate>Wed, 07 Aug 2019 21:04:17 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/tags/dns/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://zjj2wry.github.io/tags/kubernetes/</link>
-      <pubDate>Wed, 07 Aug 2019 21:04:17 +0800</pubDate>
-      
-      <guid>https://zjj2wry.github.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     

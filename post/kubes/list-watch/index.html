@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>记录一些经常用到的 tips - zhengjiajin&#39;s blog</title>
+  <title>kubernetes list-watch - zhengjiajin&#39;s blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="zhengjiajin" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="zhengjiajin" /><meta name="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
 
 
-<link rel="canonical" href="https://zjj2wry.github.io/post/tips/tips/" />
+<link rel="canonical" href="https://zjj2wry.github.io/post/kubes/list-watch/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,27 +38,27 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="记录一些经常用到的 tips" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="kubernetes list-watch" />
+<meta property="og:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zjj2wry.github.io/post/tips/tips/" />
-<meta property="article:published_time" content="2019-06-21T16:29:01&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-21T16:29:01&#43;08:00"/>
+<meta property="og:url" content="https://zjj2wry.github.io/post/kubes/list-watch/" />
+<meta property="article:published_time" content="2019-08-19T17:23:01&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-19T17:23:01&#43;08:00"/>
 
-<meta itemprop="name" content="记录一些经常用到的 tips">
-<meta itemprop="description" content="">
-
-
-<meta itemprop="datePublished" content="2019-06-21T16:29:01&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-21T16:29:01&#43;08:00" />
-<meta itemprop="wordCount" content="86">
+<meta itemprop="name" content="kubernetes list-watch">
+<meta itemprop="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl">
 
 
+<meta itemprop="datePublished" content="2019-08-19T17:23:01&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-19T17:23:01&#43;08:00" />
+<meta itemprop="wordCount" content="467">
 
-<meta itemprop="keywords" content="" />
+
+
+<meta itemprop="keywords" content="kubernetes," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="记录一些经常用到的 tips"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="kubernetes list-watch"/>
+<meta name="twitter:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -121,12 +121,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">记录一些经常用到的 tips</h1>
+      <h1 class="post-title">kubernetes list-watch</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-06-21 </span>
-        
-          <span class="more-meta"> 86 words </span>
+        <span class="post-time"> 2019-08-19 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+          <span class="more-meta"> 467 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -139,52 +141,83 @@
 <ul>
 <li>
 <ul>
-<li><a href="#修改默认-shell">修改默认 shell</a></li>
-<li><a href="#go-mod-替换包">go mod 替换包</a></li>
-<li><a href="#安装-kubectl-bash-complete">安装 kubectl bash complete</a></li>
+<li><a href="#list-watch-实现">List-watch 实现</a></li>
+<li><a href="#如何保证事件可靠性">如何保证事件可靠性</a>
+<ul>
+<li><a href="#sync-cache">sync cache</a></li>
+</ul></li>
+<li><a href="#如何保证事件连续性">如何保证事件连续性</a>
+<ul>
+<li><a href="#resource-version">resource version</a></li>
+</ul></li>
+<li><a href="#reference">reference</a></li>
 </ul></li>
 </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h2 id="修改默认-shell">修改默认 shell</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma"># 查看支持的 shells
-cat /etc/shells
-# 修改默认的 shell
-chsh -s /usr/local/bin/bash</pre></td></tr></table>
-</div>
-</div>
-<h2 id="go-mod-替换包">go mod 替换包</h2>
+      
 
-<p>使用了第3方库，但是对第3方库做了改动，不希望修改现有代码里的 import</p>
+<h2 id="list-watch-实现">List-watch 实现</h2>
+
+<p>List 是获取资源的全量数据。</p>
+
+<p>Watch 客户端会保持长连接接，通过 <code>Transfer-Encoding: chunked</code> 机制接收数据的变化情况。</p>
+
+<p>通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后客户端不会退出，如果 namespace 发现了变化，客户端依旧会继续接收用户的数据。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">go mod edit -replace <span class="s2">&#34;package=package@version&#34;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">➜  ~ curl <span class="s2">&#34;127.0.0.1:8001/api/v1/namespaces?watch=true&#34;</span> -v
+*   Trying <span class="m">127</span>.0.0.1...
+* TCP_NODELAY <span class="nb">set</span>
+* Connected to <span class="m">127</span>.0.0.1 <span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span> port <span class="m">8001</span> <span class="o">(</span><span class="c1">#0)</span>
+&gt; GET /api/v1/namespaces?watch<span class="o">=</span><span class="nb">true</span> HTTP/1.1
+&gt; Host: <span class="m">127</span>.0.0.1:8001
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 <span class="m">200</span> OK
+&lt; Content-Type: application/json
+&lt; Date: Mon, <span class="m">19</span> Aug <span class="m">2019</span> <span class="m">03</span>:56:47 GMT
+&lt; Transfer-Encoding: chunked</code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="安装-kubectl-bash-complete">安装 kubectl bash complete</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;source &lt;(kubectl completion zsh)&#39;</span> &gt;&gt;~/.zshrc
-<span class="nb">source</span> ~/.zshrc</code></pre></td></tr></table>
-</div>
-</div>
+<p>Watch 的实现可以保证数据的实时性和避免使用轮训的性能问题。</p>
+
+<h2 id="如何保证事件可靠性">如何保证事件可靠性</h2>
+
+<p>kubernetes 通过 informer list-watch 资源的变化，并处理相应的回调函数。</p>
+
+<h3 id="sync-cache">sync cache</h3>
+
+<p>kubernetes 会在第一次启动的时候把数据全部加载到自己的本地缓存中以减少对 apiserver 的直接访问。同时可以避免因为组件故障导致没有处理相应的 event 变化。比如创建 pod 的时候 controller-manager 挂了，重启后会全量加载数据(即触发 ADD event)，以此保证 pod 的创建事件能被处理。</p>
+
+<h2 id="如何保证事件连续性">如何保证事件连续性</h2>
+
+<h3 id="resource-version">resource version</h3>
+
+<p>kubernetes 的资源 metadata 都有一个 resourceversion 字段，resource version 是一个增量数据，在 watch API 可以指定 resource version 字段，k8s 会从 resource version 获取数据的变化。informer list-watch 的最佳实践是先 list?resourceVersion=0 获取 apiserver 数据(apiserver 会从缓存中获取数据)，然后拿到 resourceVersion 再去 执行 watch?resourceVersion={resourceVersion}</p>
+
+<h2 id="reference">reference</h2>
+
+<p><a href="https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/client-go/tools/cache/reflector.go#L159~L312">informer list and watch code</a></p>
+
     </div>
 
     <div class="post-copyright">
@@ -195,7 +228,7 @@ chsh -s /usr/local/bin/bash</pre></td></tr></table>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2019-06-21
+        2019-08-19
         
     </span>
   </p>
@@ -203,15 +236,13 @@ chsh -s /usr/local/bin/bash</pre></td></tr></table>
   
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/network/how-to-make-linux-microservice-aware-with-cilium/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">How to Make Linux Microservice Aware With Cilium</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/kubes/optimistic_concurrency_control/">
-            <span class="next-text nav-default">kubernetes 中的乐观并发控制</span>
+        
+        <a class="next" href="/post/network/perf/">
+            <span class="next-text nav-default">k8s dns 优化</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

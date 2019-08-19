@@ -58,3 +58,8 @@ k8s 的分区有个 quota 机制，可以用来限制分区可以使用的资源
 
 读锁(共享锁): 对该共享数据加锁，可以读取和修改，加锁期间其他的进程不能读写，也不能对该共享数据加锁
 写锁(排它锁): 对该共享数据加锁，可以读取，加锁期间其他的进程只能加读锁。
+
+## reference
+
+[apiserver precess update code](https://github.com/kubernetes/kubernetes/blob/6a2d0f67d145d7d134713ebc0f5ce0ba9bbf937d/staging/src/k8s.io/apiserver/pkg/registry/generic/registry/store.go#L474-L567)
+

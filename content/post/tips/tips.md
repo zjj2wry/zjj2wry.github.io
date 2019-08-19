@@ -17,3 +17,10 @@ chsh -s /usr/local/bin/bash
 ```bash
 go mod edit -replace "package=package@version"
 ```
+
+## 安装 kubectl bash complete
+```bash
+echo 'source <(kubectl completion zsh)' >>~/.zshrc
+source ~/.zshrc
+```
+

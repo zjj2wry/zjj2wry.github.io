@@ -6,10 +6,19 @@
     <description>Recent content in kubernetes on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Aug 2019 21:04:17 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 17:23:01 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes list-watch</title>
+      <link>https://zjj2wry.github.io/post/kubes/list-watch/</link>
+      <pubDate>Mon, 19 Aug 2019 17:23:01 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/kubes/list-watch/</guid>
+      <description>List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl</description>
+    </item>
     
     <item>
       <title>k8s dns 优化</title>
