@@ -17,7 +17,7 @@
       <pubDate>Mon, 19 Aug 2019 17:23:01 +0800</pubDate>
       
       <guid>https://zjj2wry.github.io/post/kubes/list-watch/</guid>
-      <description>List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl</description>
+      <description>List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后</description>
     </item>
     
     <item>

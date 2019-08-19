@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="zhengjiajin" /><meta name="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="zhengjiajin" /><meta name="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,14 +39,14 @@
 
 
 <meta property="og:title" content="kubernetes list-watch" />
-<meta property="og:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl" />
+<meta property="og:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zjj2wry.github.io/post/kubes/list-watch/" />
 <meta property="article:published_time" content="2019-08-19T17:23:01&#43;08:00"/>
 <meta property="article:modified_time" content="2019-08-19T17:23:01&#43;08:00"/>
 
 <meta itemprop="name" content="kubernetes list-watch">
-<meta itemprop="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl">
+<meta itemprop="description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后">
 
 
 <meta itemprop="datePublished" content="2019-08-19T17:23:01&#43;08:00" />
@@ -58,7 +58,7 @@
 <meta itemprop="keywords" content="kubernetes," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="kubernetes list-watch"/>
-<meta name="twitter:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl"/>
+<meta name="twitter:description" content="List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -163,7 +163,7 @@
 
 <p>List 是获取资源的全量数据。</p>
 
-<p>Watch 客户端会保持长连接接，通过 <code>Transfer-Encoding: chunked</code> 机制接收数据的变化情况。</p>
+<p>Watch 客户端会保持长连接，通过 <code>Transfer-Encoding: chunked</code> 机制接收数据的变化情况。</p>
 
 <p>通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后客户端不会退出，如果 namespace 发现了变化，客户端依旧会继续接收用户的数据。</p>
 <div class="highlight"><div class="chroma">
@@ -206,7 +206,7 @@
 
 <h3 id="sync-cache">sync cache</h3>
 
-<p>kubernetes 会在第一次启动的时候把数据全部加载到自己的本地缓存中以减少对 apiserver 的直接访问。同时可以避免因为组件故障导致没有处理相应的 event 变化。比如创建 pod 的时候 controller-manager 挂了，重启后会全量加载数据(即触发 ADD event)，以此保证 pod 的创建事件能被处理。</p>
+<p>kubernetes 会在第一次启动的时候把数据全部加载到自己的本地缓存中以减少对 apiserver 的直接访问。同时可以避免因为组件故障导致没有处理相应的 event 变化。比如创建 pod 的时候 controller-manager 挂了，重启后会全量加载数据(即触发 ADD event)，以此保证资源的创建事件能被处理。</p>
 
 <h2 id="如何保证事件连续性">如何保证事件连续性</h2>
 
