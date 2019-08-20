@@ -1,5 +1,5 @@
 ---
-title: "helm 常见的 issue"
+title: "helm 安装常见的 issue"
 date: 2019-07-25T19:28:47+08:00
 tags: [ "kubernetes" ]
 categories: [ "kubernetes" ]

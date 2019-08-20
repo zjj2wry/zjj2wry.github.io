@@ -6,10 +6,21 @@
     <description>Recent content in Posts on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Aug 2019 17:23:01 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Aug 2019 20:48:21 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Helm Template 实践</title>
+      <link>https://zjj2wry.github.io/post/kubes/helm-template/</link>
+      <pubDate>Tue, 20 Aug 2019 20:48:21 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/kubes/helm-template/</guid>
+      <description>&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
+
+&lt;p&gt;helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>kubernetes list-watch</title>
@@ -32,7 +43,7 @@
     </item>
     
     <item>
-      <title>helm 常见的 issue</title>
+      <title>helm 安装常见的 issue</title>
       <link>https://zjj2wry.github.io/post/kubes/helm/</link>
       <pubDate>Thu, 25 Jul 2019 19:28:47 +0800</pubDate>
       

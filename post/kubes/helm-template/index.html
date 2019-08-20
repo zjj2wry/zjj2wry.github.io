@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Helm Template 实践 - zhengjiajin&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="zhengjiajin" /><meta name="description" content="前提 helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://zjj2wry.github.io/post/kubes/helm-template/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Helm Template 实践" />
+<meta property="og:description" content="前提
+
+helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zjj2wry.github.io/post/kubes/helm-template/" />
+<meta property="article:published_time" content="2019-08-20T20:48:21&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-20T20:48:21&#43;08:00"/>
+
+<meta itemprop="name" content="Helm Template 实践">
+<meta itemprop="description" content="前提
+
+helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。">
+
+
+<meta itemprop="datePublished" content="2019-08-20T20:48:21&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-20T20:48:21&#43;08:00" />
+<meta itemprop="wordCount" content="1737">
+
+
+
+<meta itemprop="keywords" content="kubernetes," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Helm Template 实践"/>
+<meta name="twitter:description" content="前提
+
+helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">明月几时有</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">明月几时有</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Helm Template 实践</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-20 </span>
+        <div class="post-category">
+            <a href="/categories/kubernetes/"> kubernetes </a>
+            </div>
+          <span class="more-meta"> 1737 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前提">前提</a></li>
+<li><a href="#helm-template">helm template</a>
+<ul>
+<li><a href="#引用-values">引用 values</a></li>
+<li><a href="#if-else">If else</a></li>
+<li><a href="#to-yaml">to yaml</a></li>
+<li><a href="#for-range">for range</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="前提">前提</h2>
+
+<p>helm 使用 chart 管理 kubernetes yaml 文件，在做 kubernetes CI、CD 的时候需要部署和修改你的 yaml 文件。最开始的时候使用类似下面的方式修改 yaml 文件。</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">kubectl set image -f deploy.yaml &lt;container_name&gt;=&lt;image&gt; --local -o yaml | kubectl apply -f -</pre></td></tr></table>
+</div>
+</div>
+<p>因为比较经常改动的只有镜像名称，yaml 文件放在了用户的仓库中管理。后来遇到了很多的需求，比如支持日志，监控，ingress 的自动化配置，上面的就不太合适了，只能通过不断的打 patch 去管理你的 yaml 文件。后面考虑使用 sed 去打 patch，但是用的时候发现太丑了，就决定使用 chart 了。</p>
+
+<p>使用 chart 比较担心的事情就是加大复杂度，helm有一个 server 端 tiller，历史版本通过 configmap 来管，这个也加大了维护的成本，和原生的管理方式已经不一样了。由于这几个原因最后决定只使用 helm 的 client 去渲染模版的功能，提供一个比较通用的 golang 应用模版，values.yaml 文件由用户来控制。不使用任何的 server 端的功能。</p>
+
+<h2 id="helm-template">helm template</h2>
+
+<p>使用 helm template  的好处是比较标准，相比于使用 patch 的方式，values 文件可以继续保留 yaml 结构。因为大部分应用的配置都长的差不多，只需要提取部分的字段来填写即可，可以大大的加速容器化构建和服务改造的成本。</p>
+
+<p>helm template 看起来很复杂，但是实际在使用的时候其实挺简单的，看一两个例子就可以了。常用的语法如下：</p>
+
+<h3 id="引用-values">引用 values</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">{{<span class="w"> </span>.Values.name<span class="w"> </span>}}</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="if-else">If else</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{- if .Values.environment }}
+  namespace: &#34;{{ .Values.team }}-{{ .Values.environment }}&#34;
+{{- else }}
+  namespace: {{ .Values.team }}
+{{- end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="to-yaml">to yaml</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{- if .Values.service.annotations }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="for-range">for range</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">{{- range $pkey, $pval := .Values.env }}
+        - name: {{ $pkey }}
+          value: {{ quote $pval }}
+{{- end }}</pre></td></tr></table>
+</div>
+</div>
+<p>编写过程比较简单，学习起来几乎没有什么成本。最后通过 <code>helm template</code> 命令渲染就可以了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">helm template _chart/chart -x templates/namespace.yaml -f values.yaml --set <span class="nv">environment</span><span class="o">=</span><span class="nv">$ENV</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面的文件是一个基本的 golang 应用在自动化了监控、日志、ingress 下的情况下需要填写的 values.yaml 文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># required</span><span class="w">
+</span><span class="w"></span>name<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;服务名称&gt;&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># required</span><span class="w">
+</span><span class="w"></span><span class="c"># 目前通过 team-environment 作为分区名称，dev 和 qa 在一个集群，pre 和 prd 在一个集群</span><span class="w">
+</span><span class="w"></span>team<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;团队名称&gt;&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># note: 如果有对外暴露的端口则必须添加健康检查，没有则不能添加健康检查，否则会导致应用无法运行</span><span class="w">
+</span><span class="w"></span><span class="c"># 应用对外暴露的端口，如果没有注释掉</span><span class="w">
+</span><span class="w"></span>service<span class="p">:</span><span class="w">
+</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">11505</span><span class="w">
+</span><span class="w">  </span>targetPort<span class="p">:</span><span class="w"> </span><span class="m">11505</span><span class="w">
+</span><span class="w">  </span>nodePort<span class="p">:</span><span class="w"> </span><span class="m">32191</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 服务的健康检查，如果是一个需要对外暴露接口的服务，必须提供监控检查，可以避免滚动升级和扩缩容的时候出问题。</span><span class="w">
+</span><span class="w"></span>probePath<span class="p">:</span><span class="w"> </span>/ping<span class="w">
+</span><span class="w"></span>livenessProbe<span class="p">:</span><span class="w">
+</span><span class="w">  </span>initialDelaySeconds<span class="p">:</span><span class="w"> </span><span class="m">60</span><span class="w">
+</span><span class="w">  </span>periodSeconds<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="w">  </span>successThreshold<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span>timeoutSeconds<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w"></span>readinessProbe<span class="p">:</span><span class="w">
+</span><span class="w">  </span>periodSeconds<span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="w">  </span>successThreshold<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span>timeoutSeconds<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># optional</span><span class="w">
+</span><span class="w"></span><span class="c"># TRACE，是否使用 tracing，tracing 目前是文件类型的日志，如果使用会去采集/data/log/ 下的 tracing 日志</span><span class="w">
+</span><span class="w"></span>trace<span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># optional</span><span class="w">
+</span><span class="w"></span><span class="c"># 监控的端口和路径，会创建一个 service-metrics 的 svc，labels 的作用是定义被哪个 prome01 采集</span><span class="w">
+</span><span class="w"></span>monitoring<span class="p">:</span><span class="w">
+</span><span class="w">  </span>port<span class="p">:</span><span class="w"> </span><span class="m">11505</span><span class="w">
+</span><span class="w">  </span>path<span class="p">:</span><span class="w"> </span>/metrics<span class="w">
+</span><span class="w">  </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">    </span>prometheus<span class="p">:</span><span class="w"> </span><span class="s2">&#34;prome01&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># optional</span><span class="w">
+</span><span class="w"></span><span class="c"># 自定义环境变量</span><span class="w">
+</span><span class="w"></span>env<span class="p">:</span><span class="w">
+</span><span class="w">  </span>APP_NAME<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;服务名称&gt;&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># required</span><span class="w">
+</span><span class="w"></span><span class="c"># 应用的副本数量，无状态应用可多副本</span><span class="w">
+</span><span class="w"></span>replicaCount<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># required</span><span class="w">
+</span><span class="w"></span><span class="c"># 资源配额</span><span class="w">
+</span><span class="w"></span>resources<span class="p">:</span><span class="w">
+</span><span class="w">  </span>limits<span class="p">:</span><span class="w">
+</span><span class="w">    </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">    </span>memory<span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span><span class="w">  </span>requests<span class="p">:</span><span class="w">
+</span><span class="w">    </span>cpu<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">    </span>memory<span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># optional</span><span class="w">
+</span><span class="w"></span><span class="c"># 水平扩容，下面表示当 cpu 使用率超过百分之 80 自动扩容，最小为 1，最大为 3</span><span class="w">
+</span><span class="w"></span>hpa<span class="p">:</span><span class="w">
+</span><span class="w">  </span>min<span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">  </span>max<span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span>cpu_percent<span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 现在是一个二级的统配域名，部署后会自动通过 ingress 对外保留服务。pre 使用 ingress，prd 流量小的使用 ingress，流量大的直接使用 lb</span><span class="w">
+</span><span class="w"></span>ingress<span class="p">:</span><span class="w">
+</span><span class="w">  </span>wildcard_dns<span class="p">:</span><span class="w"> </span>&lt;dns<span class="sd">&gt;
+</span><span class="sd">
+</span><span class="sd"># 只有 environment=prd 才会创建 loadbalancer service</span><span class="w">
+</span><span class="w"></span>loadbalancer<span class="p">:</span><span class="w">
+</span><span class="w">  </span>annotations<span class="p">:</span><span class="w">
+</span><span class="w">    </span>service.beta.kubernetes.io/alicloud-loadbalancer-id<span class="p">:</span><span class="w"> </span><span class="s2">&#34;&lt;your-loadbalancer-id&gt;&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>environment<span class="p">:</span><span class="w"> </span>prd</code></pre></td></tr></table>
+</div>
+</div>
+<p>最后在发布的时候需要执行的命令如下，从原来的几十行 patch 变成了 3 行 helm 命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>stage(<span class="s1">&#39;Deploy ...&#39;</span>)<span class="w"> </span>{<span class="w">
+</span><span class="w">      </span>steps<span class="w"> </span>{<span class="w">
+</span><span class="w">        </span>container(<span class="s1">&#39;go&#39;</span>)<span class="w"> </span>{<span class="w">
+</span><span class="w">          </span>dir(<span class="s1">&#39;_chart&#39;</span>)<span class="w"> </span>{<span class="w">
+</span><span class="w">            </span>git<span class="w"> </span>branch<span class="p">:</span><span class="w"> </span><span class="s1">&#39;master&#39;</span><span class="p">,</span><span class="w"> </span>url<span class="p">:</span><span class="w"> </span><span class="s1">&#39;&lt;chart-git-dir&gt;&#39;</span><span class="p">,</span><span class="w"> </span>credentialsId<span class="p">:</span><span class="w"> </span><span class="s1">&#39;gitlab-admin-ssh&#39;</span><span class="w">
+</span><span class="w">          </span>}<span class="w">
+</span><span class="w">          </span>sh<span class="w"> </span><span class="s2">&#34;cat values.yaml&#34;</span><span class="w">
+</span><span class="w">          </span>sh<span class="w"> </span><span class="s2">&#34;helm template _chart/chart -x templates/namespace.yaml -f values.yaml --set environment=$ENV| kubectl apply -f -&#34;</span><span class="w">
+</span><span class="w">          </span>sh<span class="w"> </span><span class="s2">&#34;helm template _chart/chart -f values.yaml --set environment=$ENV| kubectl apply -f -&#34;</span><span class="w">
+</span><span class="w">          </span>sh<span class="w"> </span><span class="s2">&#34;helm template _chart/chart -f values.yaml -x templates/deployment.yaml --set environment=$ENV| kubectl rollout status -f -&#34;</span><span class="w">
+</span><span class="w">        </span>}<span class="w">
+</span><span class="w">      </span>}<span class="w">
+</span><span class="w">    </span>}</code></pre></td></tr></table>
+</div>
+</div>
+<p>现在会把 chart 放在了另一个仓库中，然后在用户的仓库中管理 value.yaml 文件，通过 values.yaml 渲染模版然后再发布。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">zhengjiajin</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-08-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/kubernetes/">kubernetes</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/kubes/list-watch/">
+            <span class="next-text nav-default">kubernetes list-watch</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://zjj2wry.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">zhengjiajin</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
