@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Jenkens Pipeline - zhengjiajin&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="zhengjiajin" /><meta name="description" content="jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6 with even 4.0.0" />
+
+
+<link rel="canonical" href="https://zjj2wry.github.io/post/kubes/jenkens-pipeline/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Jenkens Pipeline" />
+<meta property="og:description" content="jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zjj2wry.github.io/post/kubes/jenkens-pipeline/" />
+<meta property="article:published_time" content="2019-09-25T11:27:54&#43;08:00"/>
+<meta property="article:modified_time" content="2019-09-25T11:27:54&#43;08:00"/>
+
+<meta itemprop="name" content="Jenkens Pipeline">
+<meta itemprop="description" content="jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区">
+
+
+<meta itemprop="datePublished" content="2019-09-25T11:27:54&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-25T11:27:54&#43;08:00" />
+<meta itemprop="wordCount" content="1207">
+
+
+
+<meta itemprop="keywords" content="jenkins," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jenkens Pipeline"/>
+<meta name="twitter:description" content="jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">明月几时有</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">明月几时有</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Jenkens Pipeline</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-25 </span>
+        <div class="post-category">
+            <a href="/categories/jenkins/"> jenkins </a>
+            </div>
+          <span class="more-meta"> 1207 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#maybe-help">maybe help</a></li>
+<li><a href="#git-parameter">git parameter</a></li>
+<li><a href="#定义环境变量">定义环境变量</a></li>
+<li><a href="#checkout-scm">checkout scm</a></li>
+<li><a href="#获取-git-版本信息">获取 git 版本信息</a></li>
+<li><a href="#if-else">if else</a></li>
+<li><a href="#git">Git</a></li>
+<li><a href="#post">post</a></li>
+<li><a href="#load">load</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区别就是 Declarative Pipeline 整体比较简洁，学习起来也比 groovy 要快的多。Declarative Pipeline 的编程模型是 <a href="https://en.wikipedia.org/wiki/Declarative_programming">Declarative programming</a>，而 Scripted Pipeline 是 <a href="https://en.wikipedia.org/wiki/Imperative_programming">Imperative_programming</a>。 Declarative Pipeline 要预定义脚本结构，语法也比较严格一些，Scripted Pipeline 其实就是一行一行的脚本，一般执行到那才知道有没有问题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Jenkinsfile (Scripted Pipeline)
+node {
+    stage(&#39;Example&#39;) {
+        if (env.BRANCH_NAME == &#39;master&#39;) {
+            echo &#39;I only execute on the master branch&#39;
+        } else {
+            echo &#39;I execute elsewhere&#39;
+        }
+    }
+}</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker &#39;maven:3-alpine&#39; } 
+    stages {
+        stage(&#39;Example Build&#39;) {
+            steps {
+                sh &#39;mvn -B clean verify&#39;
+            }
+        }
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>最终还是选择使用了 Declarative Pipeline，因为比较简洁，而且能满足所有的需求。在使用 Declarative Pipeline 可以先看一下 <a href="https://jenkins.io/doc/book/pipeline/syntax/#compare">官方语法文档</a> 和 <a href="https://github.com/jenkinsci/pipeline-examples">官方例子仓库</a>。</p>
+
+<h3 id="maybe-help">maybe help</h3>
+
+<h3 id="git-parameter">git parameter</h3>
+
+<p>Declarative Pipeline 一样可以定义参数化构建，有一些情况你可能不想把 jenkinsfile 和代码的仓库放到一下，但是你要 checkout code，所以需要定义 gitParameter 来拉指定分支或者 tag 的代码。这个有一个问题要先执行一次才能在 jenkins 的界面上拉分支和 tag</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">  parameters {
+    gitParameter defaultValue: &#39;origin/master&#39;,
+             name: &#39;BRANCH_TAG&#39;,
+             type: &#39;PT_BRANCH_TAG&#39;,
+             useRepository: &#34;&lt;git_url&gt;&#34;,
+             quickFilterEnabled: &#39;true&#39;,
+             listSize: &#39;10&#39;,
+             description: &#39;pre 和 prd 环境使用 tag 发布&#39;,
+             branchFilter: &#39;origin.*/(.*)&#39;,
+             tagFilter: &#39;*&#39;
+  }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="定义环境变量">定义环境变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">  environment {
+    PROJECT=&#34;${JOB_NAME}&#34;
+    DATE=sh(returnStdout: true, script: &#39;date &#34;+%Y-%m-%d %H:%M:%S&#34;&#39;).trim()
+  }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="checkout-scm">checkout scm</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">        container(&#39;go&#39;) {
+          checkout scm: [$class: &#39;GitSCM&#39;, 
+                   userRemoteConfigs: [[url: &#34;&lt;git_url&gt;&#34;, credentialsId: &#39;gitlab-admin-ssh&#39;]], 
+                   branches: [[name: &#34;${params.BRANCH_TAG}&#34;]]], 
+                   poll: false
+        }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="获取-git-版本信息">获取 git 版本信息</h3>
+
+<p>因为发布的时候可以选择 分支和 tag，所以在参数化构建的时候定义 BRANCH_TAG 不能直接作为 tag 来使用，可以使用 git 命令来获取 tag 信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">        script {
+          VERSION=sh(returnStdout: true, script: &#39;git describe --candidate=1 --tags&#39;).trim()
+        }  </pre></td></tr></table>
+</div>
+</div>
+<h3 id="if-else">if else</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">			script {
+            if (env.BUILD_IMAGE == &#34;false&#34;){
+              sh &#34;docker pull ...&#34;
+            } else {
+            	 sh &#34;docker build ...&#34;
+            }
+				}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="git">Git</h3>
+
+<p>在 pipeline 中要使用其他的 git 仓库，下面会 clone 其他的仓库到 _chart 目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">          dir(&#39;_chart&#39;) {
+            git branch: &#34;&lt;git_branch&gt;&#34;, url: &#34;&lt;git_url&gt;&#34;, credentialsId: &#39;gitlab-admin-ssh&#39;
+          } </pre></td></tr></table>
+</div>
+</div>
+<p>在使用的时候想把最后部署到 k8s 的所有 yaml 文件做一个备份，并记录一下用户名，下面的例子是怎么获取执行的用户名和如何在 credentials 中拿到 gitlab 的用户名和密码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">            wrap([$class: &#39;BuildUser&#39;]) {
+              script {
+                withCredentials([usernamePassword(credentialsId: &#39;zhengjiajin-gitlab&#39;, usernameVariable: &#39;GIT_USERNAME&#39;, passwordVariable: &#39;GIT_PASSWORD&#39;)]) {
+                  sh(&#34;&#34;&#34;export GIT_AUTHOR_EMAIL=******
+                    export GIT_AUTHOR_NAME=*******
+                    git add ${JOB_NAME}/${ENV}/${BUILD_ID}/_deploy.yaml
+                    git commit -m &#39;${BUILD_USER_ID} prompt ${JOB_NAME}:${VERSION} to ${ENV} in ${DATE}&#39;
+                    git push https://${GIT_USERNAME}:${GIT_PASSWORD}@&lt;git_url&gt;&#34;&#34;&#34;)
+                }
+              }
+            }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="post">post</h3>
+
+<p>发布的时候可能想有一个通知，可以使用 post 语句, <code>git log --pretty=format:&quot;%h - %an, %ar : %s&quot; -n 1'</code> 可以显示当前 git 最后一个 commit 信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">  post {
+    always {
+        container(&#39;go&#39;) {
+            wrap([$class: &#39;BuildUser&#39;]) {
+                script {
+                  text=sh(returnStdout: true, script: &#39;git log --pretty=format:&#34;%h - %an, %ar : %s&#34; -n 1&#39;).trim()
+                  endAt=sh(returnStdout: true, script: &#39;date &#34;+%Y-%m-%d %H:%M:%S&#34;&#39;).trim()
+                  end=sh(returnStdout: true, script: &#39;date &#34;+%s&#34;&#39;).trim()
+                  result=currentBuild.result
+                  duration= (end as int)-(start as int)
+                }
+                sh &#34;&#34;&#34;curl -i -X POST -H &#34;Content-type: application/json&#34; -d &#39;
+{
+  &#34;operator&#34;: &#34;${BUILD_USER_ID}&#34;,
+  &#34;serviceName&#34;:&#34;${JOB_NAME}&#34;,
+  &#34;startAt&#34;:&#34;${startAt}&#34;,
+  &#34;endAt&#34;:&#34;${endAt}&#34;,
+  &#34;text&#34;: &#34;${text}&#34;,
+  &#34;duration&#34;:&#34;${duration}s&#34;,
+  &#34;jobAddress&#34;: &#34;${JOB_URL}&#34;,
+  &#34;status&#34;:&#34;${result}&#34;
+}&#39; ${url}&#34;&#34;&#34;
+              }
+        }
+    }
+  }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="load">load</h3>
+
+<p>Declarative Pipeline 好像并不支持 load 其他 pipeline 的能力，Scripted Pipeline 是可以 load 其他的 pipeline 的，在实际使用的时候遇到一个问题就是 k8s 的 yaml 和 jenkins 都需要一些学习曲线，用户完全不关心，这个时候可以把 pipeline 放到另一个仓库中作为 code 来管理，然后使用 load 加载 pipeline。下面的例子是通过 gitlab raw 的 API 获取 Declarative Pipelines 并加载执行，另外把想要在 jenkins 上修改的变量 echo 到了 _Jenkinsfile 顶部，比较 hack。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">node(&#34;jenkins-go&#34;){
+  stage(&#34;load declarative jenkinsfile&#34;){
+    container(&#39;go&#39;) {
+      withCredentials([string(credentialsId: &#39;gitlab-token&#39;, variable: &#39;TOKEN&#39;)]) {
+        sh &#34;&#34;&#34;
+          set +vx
+          echo &#34;def GIT_URL = &#39;&lt;GIT_URL&gt;&#39;
+// 指定部署文件的仓库(jenkinsfile 和 k8s yaml 文件)
+def CHART_GIT_BRANCH = &#39;master&#39;
+def CHART_GIT_URL = &#39;&lt;git_url&gt;&#39;&#34; &gt; _Jenkinsfile
+          curl -H &#34;PRIVATE-TOKEN: ${TOKEN}&#34; &#34;https://&lt;git_url&gt;/api/v4/projects/6082/repository/files/jobs%2F${JOB_NAME}%2FJenkinsfile/raw?ref=master&#34;&gt;&gt;_Jenkinsfile
+        &#34;&#34;&#34;
+      }
+    }
+  }
+  load &#34;_Jenkinsfile&#34;
+}</pre></td></tr></table>
+</div>
+</div>
+<p>需要完整的例子可以发邮件给我。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">zhengjiajin</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-09-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/jenkins/">jenkins</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/kubes/helm-template/">
+            <span class="next-text nav-default">Helm Template 实践</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://zjj2wry.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">zhengjiajin</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

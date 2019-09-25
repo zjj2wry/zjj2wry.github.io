@@ -3,7 +3,44 @@
   
   <url>
     <loc>https://zjj2wry.github.io/categories/</loc>
-    <lastmod>2019-08-20T20:48:21+08:00</lastmod>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/post/kubes/jenkens-pipeline/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/post/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/tags/jenkins/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/categories/jenkins/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zjj2wry.github.io/</loc>
+    <lastmod>2019-09-25T11:27:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -15,31 +52,13 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/post/</loc>
-    <lastmod>2019-08-20T20:48:21+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/tags/</loc>
-    <lastmod>2019-08-20T20:48:21+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
-    <lastmod>2019-08-20T20:48:21+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zjj2wry.github.io/tags/kubernetes/</loc>
     <lastmod>2019-08-20T20:48:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/</loc>
+    <loc>https://zjj2wry.github.io/categories/kubernetes/</loc>
     <lastmod>2019-08-20T20:48:21+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -52,13 +71,13 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/categories/dns/</loc>
+    <loc>https://zjj2wry.github.io/tags/dns/</loc>
     <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tags/dns/</loc>
+    <loc>https://zjj2wry.github.io/categories/dns/</loc>
     <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -71,13 +90,13 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/categories/network/</loc>
+    <loc>https://zjj2wry.github.io/tags/network/</loc>
     <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tags/network/</loc>
+    <loc>https://zjj2wry.github.io/categories/network/</loc>
     <lastmod>2019-08-07T21:04:17+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -132,13 +151,13 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/categories/tensorflows/</loc>
+    <loc>https://zjj2wry.github.io/tags/tensorflows/</loc>
     <lastmod>2019-02-25T16:34:28+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tags/tensorflows/</loc>
+    <loc>https://zjj2wry.github.io/categories/tensorflows/</loc>
     <lastmod>2019-02-25T16:34:28+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -151,13 +170,13 @@
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/categories/cnn/</loc>
+    <loc>https://zjj2wry.github.io/tags/cnn/</loc>
     <lastmod>2019-02-12T10:17:16+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zjj2wry.github.io/tags/cnn/</loc>
+    <loc>https://zjj2wry.github.io/categories/cnn/</loc>
     <lastmod>2019-02-12T10:17:16+08:00</lastmod>
     <priority>0</priority>
   </url>

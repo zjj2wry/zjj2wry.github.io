@@ -6,10 +6,19 @@
     <description>Recent content in Posts on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Aug 2019 20:48:21 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Sep 2019 11:27:54 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jenkens Pipeline</title>
+      <link>https://zjj2wry.github.io/post/kubes/jenkens-pipeline/</link>
+      <pubDate>Wed, 25 Sep 2019 11:27:54 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/kubes/jenkens-pipeline/</guid>
+      <description>jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区</description>
+    </item>
     
     <item>
       <title>Helm Template 实践</title>

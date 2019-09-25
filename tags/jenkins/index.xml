@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jenkins on zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/tags/jenkins/</link>
+    <description>Recent content in jenkins on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Sep 2019 11:27:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jenkens Pipeline</title>
+      <link>https://zjj2wry.github.io/post/kubes/jenkens-pipeline/</link>
+      <pubDate>Wed, 25 Sep 2019 11:27:54 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/kubes/jenkens-pipeline/</guid>
+      <description>jenkins pipeline 分为 Scripted Pipeline 和 Declarative Pipeline，Scripted Pipeline 是最早基于 groovy 实现的 pipeline 语法，Declarative Pipeline 是后面推出的声明式 pipeline 语法，两个最大的区</description>
+    </item>
+    
+  </channel>
+</rss>

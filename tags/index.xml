@@ -6,10 +6,19 @@
     <description>Recent content in Tags on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 20 Aug 2019 20:48:21 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Sep 2019 11:27:54 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>jenkins</title>
+      <link>https://zjj2wry.github.io/tags/jenkins/</link>
+      <pubDate>Wed, 25 Sep 2019 11:27:54 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/tags/jenkins/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>kubernetes</title>
