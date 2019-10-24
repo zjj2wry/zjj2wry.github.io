@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on zhengjiajin&#39;s blog</title>
+    <link>https://zjj2wry.github.io/categories/docker/</link>
+    <description>Recent content in docker on zhengjiajin&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Oct 2019 14:10:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://zjj2wry.github.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>docker aufs 镜像驱动</title>
+      <link>https://zjj2wry.github.io/post/docker/image-graph-driver/</link>
+      <pubDate>Thu, 24 Oct 2019 14:10:54 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/docker/image-graph-driver/</guid>
+      <description>&lt;p&gt;docker 镜像使用 linux 联合文件系统实现，联合文件系统的作用就是可以把多个目录挂载到同一个目录，在一个目录下管理所有的文件。docker 对镜像分层管理，分成只读层和可读写层。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
