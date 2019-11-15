@@ -6,10 +6,23 @@
     <description>Recent content in Posts on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 24 Oct 2019 14:10:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Nov 2019 20:29:58 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang 大量 TIME_WAIT</title>
+      <link>https://zjj2wry.github.io/post/golang/time-wait/</link>
+      <pubDate>Thu, 14 Nov 2019 20:29:58 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/golang/time-wait/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.serverframework.com/asynchronousevents/2011/01/time-wait-and-its-design-implications-for-protocols-and-scalable-servers.html&#34;&gt;TIME_WAIT and its design implications for protocols and scalable client server systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc793#page-37&#34;&gt;tcp rfc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tleyden.github.io/blog/2016/11/21/tuning-the-go-http-client-library-for-load-testing/&#34;&gt;tuning-the-go-http-client-library-for-load-testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     
     <item>
       <title>docker aufs 镜像驱动</title>

@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zjj2wry.github.io/" />
 
-<meta property="og:updated_time" content="2019-10-24T14:10:54&#43;08:00"/>
+<meta property="og:updated_time" content="2019-11-14T20:29:58&#43;08:00"/>
 
 <meta itemprop="name" content="zhengjiajin&#39;s blog">
 <meta itemprop="description" content="Hugo theme even example site.">
@@ -113,6 +113,29 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/kubes/list-watch/">kubernetes list-watch</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-08-19 </span>
+      <div class="post-category">
+          <a href="/categories/kubernetes/"> kubernetes </a>
+          </div>
+        <span class="more-meta"> 467 words </span>
+        <span class="more-meta"> 1 min read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      List-watch 实现 List 是获取资源的全量数据。 Watch 客户端会保持长连接，通过 Transfer-Encoding: chunked 机制接收数据的变化情况。 通过 kubectl proxy 命令方便本地调用 apiserver，如下调用 curl 后
+    </div>
+    <div class="read-more">
+      <a href="/post/kubes/list-watch/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/network/perf/">k8s dns 优化</a></h1>
@@ -206,32 +229,6 @@
     </div>
     <div class="read-more">
       <a href="/post/kubes/logging/" class="read-more-link">Read more..</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/network/iptables/">理解 kube-proxy 中 iptables 规则</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-05 </span>
-      <div class="post-category">
-          <a href="/categories/network/"> network </a>
-          <a href="/categories/kubernetes/"> kubernetes </a>
-          </div>
-        <span class="more-meta"> 1276 words </span>
-        <span class="more-meta"> 3 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h2 id="concept">concept</h2>
-
-<p>iptables 是基于 linux 内核 netfilter hook 实现的用户态工具，处于网络层和传输层之间，可以对 packet 做过滤和 nat。</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/network/iptables/" class="read-more-link">Read more..</a>
     </div>
   </div>
 </article>
