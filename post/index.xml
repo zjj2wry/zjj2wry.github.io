@@ -6,10 +6,19 @@
     <description>Recent content in Posts on zhengjiajin&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 14 Nov 2019 20:29:58 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 16:36:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zjj2wry.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kuberntes host-path、nfs provisioner</title>
+      <link>https://zjj2wry.github.io/post/kubes/storage-hostpath-nfs/</link>
+      <pubDate>Mon, 25 Nov 2019 16:36:25 +0800</pubDate>
+      
+      <guid>https://zjj2wry.github.io/post/kubes/storage-hostpath-nfs/</guid>
+      <description>&lt;p&gt;场景是使用本地的目录作为持久卷或者想要将本地目录作为共享数据盘对外提供&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>golang 大量 TIME_WAIT</title>
